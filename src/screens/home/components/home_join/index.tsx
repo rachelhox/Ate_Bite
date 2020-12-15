@@ -64,11 +64,7 @@ export const HomeJoin = () => {
             submit
           </Button>
         </form>
-        <Button onClick={() => {
-          history.push("/hello")
-        }}>Hello</Button>
       </div>
-      {/* <Route path="/hello" component={Hello} /> */}
     </HomeJoinCSS>
   );
 };

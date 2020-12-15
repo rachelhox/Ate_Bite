@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { SignUpFormCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import logoSmall from "../../../../static/icons/ate-bite-small-logo.png";
 
 export const SignUpForm = () => {
   const [inputs, setInputs] = useState({
@@ -42,7 +42,7 @@ export const SignUpForm = () => {
 
   return (
     <SignUpFormCSS>
-      <img src="/static/icons/ate-bite-small-logo.png" />
+      <img src={logoSmall} />
       <div className="form">
         <form noValidate autoComplete="off">
           <TextField

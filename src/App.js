@@ -31,7 +31,7 @@ const PurePrivateRoute = ({ component, isAuthenticated, ...rest }) => {
             ) : (
                 <Redirect
                 to={{
-                    pathname: "/",
+                    pathname: "/sign-up",
                 }}
                 />
             )

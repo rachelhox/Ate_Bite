@@ -5,8 +5,11 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Hello from "../../../hello";
+import logo from "../../../../static/icons/ate-bite-logo.png";
+import { useHistory } from "react-router-dom";
 
 export const HomeJoin = () => {
+  const history = useHistory();
   const [inputs, setInputs] = useState({ username: "", roomcode: "" });
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -25,7 +28,7 @@ export const HomeJoin = () => {
   }, [inputs]);
   return (
     <HomeJoinCSS>
-      <img src="/static/icons/ate-bite-logo.png" />
+      <img src={logo} />
       <div className="form">
         <form noValidate autoComplete="off">
           <FormHelperText id="component-helper-text">
@@ -61,9 +64,11 @@ export const HomeJoin = () => {
             submit
           </Button>
         </form>
-        <Link to="/hello">Hello</Link>
+        <Button onClick={() => {
+          history.push("/hello")
+        }}>Hello</Button>
       </div>
-      <Route path="/hello" component={Hello} />
+      {/* <Route path="/hello" component={Hello} /> */}
     </HomeJoinCSS>
   );
 };

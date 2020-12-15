@@ -19,7 +19,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-// import { GlobalCSS } from "./styles";
+import GlobalCSS from "./styles/global";
 
 import { Provider } from "react-redux";
 import App from "./App";
@@ -30,7 +30,7 @@ import { BrowserRouter } from "react-router-dom";
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      {/* <GlobalCSS /> */}
+      <GlobalCSS />
       <App />
     </BrowserRouter>
   </Provider>,

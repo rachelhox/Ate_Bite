@@ -5,8 +5,8 @@ import {
   } from "./action";
   
   const initialState = {
-    // isAuthenticated: false || localStorage.getItem("token") != null,
-    isAuthenticated: false
+    isAuthenticated: false || localStorage.getItem("token") != null,
+    // isAuthenticated: false
   };
   
   export function authReducer(state = initialState, action) {

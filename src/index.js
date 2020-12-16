@@ -19,17 +19,20 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-// import { GlobalCSS } from "./styles";
+import GlobalCSS from "./styles/global";
 
 import { Provider } from "react-redux";
 import App from "./App";
 import { store } from "./redux/store";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <GlobalCSS /> */}
-    <App />
+    <BrowserRouter>
+      <GlobalCSS />
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

@@ -12,8 +12,9 @@ export const SignUpForm = () => {
     email: "",
     password: "",
   });
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    console.log(event.target);
     setInputs((inputs) => ({
       ...inputs,
       [name]: value,
@@ -38,7 +39,7 @@ export const SignUpForm = () => {
       })
       .then((res) => {
         console.log(res.status);
-        if (res.status == 200) {
+        if (res.status === 200) {
           toast.success("Sign up success 🚀");
           setInputs({
             username: "",

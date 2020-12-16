@@ -170,7 +170,7 @@ const SignInUpBtn = (props: any) => {
               classes={{ root: classesBtn.root }}
               onClick={handleSubmit}
             >
-              sign in
+              <Link to="/dashboard">sign in</Link>
             </Button>
             <Button
               variant="contained"

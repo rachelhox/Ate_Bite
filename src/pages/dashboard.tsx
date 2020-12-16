@@ -1,8 +1,14 @@
 import React from "react";
 import Hello from "../screens/dashboard";
+import { NavBar } from "../components";
 
 const DashboardPage = () => {
-  return <Hello />;
+  return (
+    <>
+      <NavBar />
+      <Hello />
+    </>
+  );
 };
 
 export default DashboardPage;

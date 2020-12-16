@@ -4,10 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
 import logo from "../../../../static/icons/ate-bite-logo.png";
-import { useHistory } from "react-router-dom";
 
 export const HomeJoin = () => {
-  const history = useHistory();
   const [inputs, setInputs] = useState({ username: "", roomcode: "" });
   const handleChange = (event: any) => {
     const { name, value } = event.target;

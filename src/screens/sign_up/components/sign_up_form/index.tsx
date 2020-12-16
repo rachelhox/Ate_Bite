@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { SignUpFormCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -35,8 +36,16 @@ export const SignUpForm = () => {
         email: inputs.email,
         password: inputs.password,
       })
-      .then(() => {
-        console.log("sign up");
+      .then((res) => {
+        console.log(res.status);
+        if (res.status == 200) {
+          toast.success("Sign up success 🚀");
+          setInputs({
+            username: "",
+            email: "",
+            password: "",
+          });
+        }
       });
   };
 

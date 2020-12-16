@@ -1,7 +1,7 @@
 import React from "react";
 
-export const Hello = () => {
+export const Dashboard = () => {
   return <h1>I am private</h1>;
 };
 
-export default Hello;
+export default Dashboard;

@@ -3,8 +3,6 @@ import { HomeJoinCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Hello from "../../../hello";
 import logo from "../../../../static/icons/ate-bite-logo.png";
 import { useHistory } from "react-router-dom";
 

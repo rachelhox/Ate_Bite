@@ -8,6 +8,24 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Check from '@material-ui/icons/Check';
 import { green } from '@material-ui/core/colors';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
+function LinearProgressWithLabel(props) {
+  return (
+    <Box display="flex" alignItems="center">
+      <Box width="100%" mr={1}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box minWidth={35}>
+        <Typography variant="body2" color="textSecondary">{`${Math.round(
+          props.value,
+        )}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
 
 const Voting = (props) => {
   
@@ -69,8 +87,8 @@ const Voting = (props) => {
                 key={t}
                 className={`voteOptionItem`}>
                   {voteOption.resto}
+                  <LinearProgressWithLabel value={voteOption.vote} />
                   
-                  {voteOption.vote}
                 </li>
             ))}
             </div>

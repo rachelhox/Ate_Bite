@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { MakeRoomForm } from "./make_room";
 import { ITabPanelProps } from "../../interfaces";
+import { RoomNavCSS } from "./styles";
 
 function TabPanel(props: ITabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -42,7 +43,7 @@ export const RoomNav = (props: ITabPanelProps) => {
   };
 
   return (
-    <div className="roomNav">
+    <RoomNavCSS>
       <AppBar position="static">
         <Tabs
           value={value}
@@ -63,7 +64,7 @@ export const RoomNav = (props: ITabPanelProps) => {
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
-    </div>
+    </RoomNavCSS>
   );
 };
 

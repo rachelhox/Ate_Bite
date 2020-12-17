@@ -20,6 +20,7 @@ import {
   Link,
 } from "react-router-dom";
 import SignUp from "../../../sign_up";
+import { useHistory } from "react-router-dom";
 
 // styling for paper
 const useStylesPaper = makeStyles({
@@ -69,6 +70,8 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const SignInUpBtn = (props: any) => {
+  const [loggedin, setLoggedin] = useState(false);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event: any) => {
@@ -92,16 +95,25 @@ const SignInUpBtn = (props: any) => {
     }));
   };
   const [canSubmit, setCanSubmit] = useState(false);
+  const history = useHistory();
   useEffect(() => {
     if (inputs.username && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+  if (props.isAuthenticated) {
+    setLoggedin(true)
+  }
+
+    if (loggedin === true) {
+      history.push('/dashboard');
+    }
+  }, [inputs, history, loggedin, props.isAuthenticated]);
 
   const handleSubmit = async () => {
     await props.loginRedux(inputs.username, inputs.password);
+    setLoggedin(true);
   };
   const handleLogOut = () => {
     props.logoutRedux();

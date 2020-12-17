@@ -5,7 +5,16 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 
 export const MakeRoomForm = () => {
-  const [inputs, setInputs] = useState({ username: "", roomcode: "" });
+  const [inputs, setInputs] = useState({ roomname: "" });
+  console.log(inputs);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    console.log(event.target);
+    setInputs((inputs) => ({
+      ...inputs,
+      [name]: value,
+    }));
+  };
   return (
     <>
       <div className="form">
@@ -15,10 +24,10 @@ export const MakeRoomForm = () => {
           </FormHelperText>
           <TextField
             id="outlined-name"
-            label="Username"
-            name="username"
+            label="Room Name"
+            name="roomname"
             placeholder="Enter username"
-            value={inputs.username}
+            value={inputs.roomname}
             onChange={handleChange}
             variant="outlined"
           />

@@ -1,3 +1,11 @@
-import MakeRoomForm from "./make_room";
+import { MakeRoomForm } from "./make_room";
 
-export { MakeRoomForm };
+export const RoomNav = () => {
+  return (
+    <>
+      <MakeRoomForm />
+    </>
+  );
+};
+
+export default RoomNav;

@@ -7,7 +7,7 @@ export const Dashboard = () => {
     <>
       {/* <img src={logo} />; */}
       <h1>hi</h1>
-      <RoomNav />
+      <RoomNav value="" index={0} />
     </>
   );
 };

@@ -38,7 +38,6 @@ export const SignUpForm = () => {
         password: inputs.password,
       })
       .then((res) => {
-        console.log(`hi`, res.status);
         if (res.status === 200) {
           toast.success("Sign up success 🚀");
           setInputs({

@@ -102,12 +102,12 @@ const SignInUpBtn = (props: any) => {
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  if (props.isAuthenticated) {
-    setLoggedin(true)
-  }
+    if (props.isAuthenticated) {
+      setLoggedin(true);
+    }
 
     if (loggedin === true) {
-      history.push('/dashboard');
+      history.push("/dashboard");
     }
   }, [inputs, history, loggedin, props.isAuthenticated]);
 
@@ -120,8 +120,8 @@ const SignInUpBtn = (props: any) => {
   };
 
   const handleClickSignUp = () => {
-    history.push('/sign-up');
-  }
+    history.push("/sign-up");
+  };
 
   // for styling paper
   const classesPaper = useStylesPaper();

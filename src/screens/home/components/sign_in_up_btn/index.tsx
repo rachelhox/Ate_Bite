@@ -118,6 +118,11 @@ const SignInUpBtn = (props: any) => {
   const handleLogOut = () => {
     props.logoutRedux();
   };
+
+  const handleClickSignUp = () => {
+    history.push('/sign-up');
+  }
+
   // for styling paper
   const classesPaper = useStylesPaper();
   // for styling form
@@ -182,14 +187,15 @@ const SignInUpBtn = (props: any) => {
               classes={{ root: classesBtn.root }}
               onClick={handleSubmit}
             >
-              <Link to="/dashboard">sign in</Link>
+              sign in
             </Button>
             <Button
               variant="contained"
               color="primary"
               classes={{ root: classesBtn.root }}
+              onClick={handleClickSignUp}
             >
-              <Link to="/sign-up">sign up</Link>
+              sign up
             </Button>
             <Button
               type="submit"

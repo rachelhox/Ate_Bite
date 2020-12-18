@@ -35,6 +35,7 @@ export function loginUserThunk(username, password) {
           );
         } else {
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("userId", response.data.id);
           dispatch(loginSuccessActionCreator());
           console.log(response.data.token);
         }
@@ -54,10 +55,11 @@ export function logoutSuccessActionCreator() {
 export function logoutNowThunk() {
   return (dispatch) => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     dispatch(logoutSuccessActionCreator());
   };
 }
-
+// not using FB login atm, left in here in case we wanna use it in the future
 export function loginFacebookThunk(accessToken) {
   return (dispatch) => {
     console.log(accessToken);

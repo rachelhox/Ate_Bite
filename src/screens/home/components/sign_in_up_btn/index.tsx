@@ -7,6 +7,7 @@ import Popover from "@material-ui/core/Popover";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import validator from "validator";
 import {
   loginUserThunk,
   loginFacebookThunk,
@@ -97,7 +98,7 @@ const SignInUpBtn = (props: any) => {
   const [canSubmit, setCanSubmit] = useState(false);
   const history = useHistory();
   useEffect(() => {
-    if (inputs.email && inputs.password) {
+    if (validator.isEmail(inputs.email) && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);

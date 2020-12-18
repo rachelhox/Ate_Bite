@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import validator from "validator";
 import { SignUpFormCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -22,7 +23,7 @@ export const SignUpForm = () => {
   };
   const [canSubmit, setCanSubmit] = useState(false);
   useEffect(() => {
-    if (inputs.username && inputs.email && inputs.password) {
+    if (inputs.username && validator.isEmail(inputs.email) && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);

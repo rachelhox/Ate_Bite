@@ -79,22 +79,27 @@ export const MyMap = () => {
         mapRef.current.setZoom(14);
     }, []);
 
-    if (loadError) return "Error loading map";
-    if (!isLoaded) return "Loading map";
+    // const getCurrentLocation = async () => {
+    //     await navigator.geolocation.getCurrentPosition(
+    //         (position) => {
+    //             let currentLocation = {
+    //                 lat: position.coords.latitude,
+    //                 lng: position.coords.longitude,
+    //             }
+    //             console.log('hi');
+    //             return currentLocation;
+    //         },
+    //         () => null
+    //         );
+    //     }
+    // }
 
     // useEffect(() => {
-    //     navigator.geolocation.getCurrentPosition(
-    //       (position) => {
-    //         let currentLocation = {
-    //             lat: position.coords.latitude,
-    //             lng: position.coords.longitude,
-    //         }
-    //         return currentLocation;
-    //       },
-    //       () => null
-    //     );
-    // }, [])
+    //     getCurrentLocation();
+    // },[])
 
+    if (loadError) return "Error loading map";
+    if (!isLoaded) return "Loading map";
 
     return (
         <div>

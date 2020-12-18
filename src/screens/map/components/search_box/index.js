@@ -21,7 +21,7 @@ export const SearchBox = () => {
                 id: i,
             }
         })
-        // console.log(allPlaces);
+        console.log(allPlaces);
         setPlaces(allPlaces);
     };
 
@@ -32,6 +32,7 @@ export const SearchBox = () => {
             onPlacesChanged={
                 onPlacesChanged
             }
+            // bounds={{ lat: 22.4445, lng: 114.0222 }}
             >
             <input
                 type="text"

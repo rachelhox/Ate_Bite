@@ -108,7 +108,8 @@ const SignInUpBtn = (props: any) => {
     }
 
     if (loggedin === true) {
-      history.push("/dashboard");
+      let userId = localStorage.getItem("userId");
+      history.push(`/dashboard/${userId}`);
     }
   }, [inputs, history, loggedin, props.isAuthenticated]);
 

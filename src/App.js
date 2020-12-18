@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import HomePage from "./pages/index";
 import SignUpPage from "./pages/sign-up";
 import DashboardPage from "./pages/dashboard"
+import RoomPage from "./pages/room";
 import { connect } from "react-redux";
 
 const PurePrivateRoute = ({ component, isAuthenticated, ...rest }) => {
@@ -52,7 +53,8 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/sign-up" component={SignUpPage} />
-          <PrivateRoute path="/dashboard" component={DashboardPage} />
+          <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
+          <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
         </Switch>
       </Router>
     );

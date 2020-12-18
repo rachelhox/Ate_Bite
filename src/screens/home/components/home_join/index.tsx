@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { HomeJoinCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -22,6 +24,26 @@ export const HomeJoin = () => {
       setCanSubmit(false);
     }
   }, [inputs]);
+  const handleSubmit = (event) => {
+    if (event) {
+      event.preventDefault();
+      axios
+        .post(process.env.REACT_APP_SERVER_URL + "/join", {
+          username: inputs.username,
+          roomcode: inputs.roomcode,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            toast.success("success");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("error");
+        });
+    }
+  };
+
   return (
     <HomeJoinCSS>
       <img src={logo} />
@@ -56,6 +78,7 @@ export const HomeJoin = () => {
             disabled={!canSubmit}
             variant="outlined"
             color="primary"
+            onClick={handleSubmit}
           >
             submit
           </Button>

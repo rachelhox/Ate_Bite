@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import validator from "validator";
+import { useHistory, useParams } from "react-router-dom";
 import { SignUpFormCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -8,6 +9,7 @@ import axios from "axios";
 import logoSmall from "../../../../static/icons/ate-bite-small-logo.png";
 
 export const SignUpForm = () => {
+  const history = useHistory();
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -41,11 +43,9 @@ export const SignUpForm = () => {
       .then((res) => {
         if (res.status === 200) {
           toast.success("Sign up success 🚀");
-          setInputs({
-            username: "",
-            email: "",
-            password: "",
-          });
+          console.log(res.data.userId);
+
+          history.push(`/`);
         }
       })
       .catch((err) => {

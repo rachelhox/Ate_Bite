@@ -55,13 +55,10 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/sign-up" component={SignUpPage} />
-<<<<<<< HEAD
           <Route path="/chatroom" component={ChatRoom} />
           <Route path="/livefeed" component={LiveFeed} />
           <Route path="/voting" component={Voting} />
-=======
           <PrivateRoute path="/dashboard" component={DashboardPage} />
->>>>>>> 5a79cf7c27877302e6df471b0f09a2ef2e019a3d
         </Switch>
       </Router>
     );

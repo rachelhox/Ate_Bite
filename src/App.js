@@ -19,6 +19,7 @@ import ChatRoom from "./pages/chatroom";
 import LiveFeed from "./pages/livefeed";
 import Voting from "./pages/voting";
 import DashboardPage from "./pages/dashboard"
+import MapPage from "./pages/map";
 import { connect } from "react-redux";
 
 const PurePrivateRoute = ({ component, isAuthenticated, ...rest }) => {
@@ -59,6 +60,7 @@ export default function App() {
           <Route path="/livefeed" component={LiveFeed} />
           <Route path="/voting" component={Voting} />
           <PrivateRoute path="/dashboard" component={DashboardPage} />
+          <Route path="/map" component={MapPage} />
         </Switch>
       </Router>
     );

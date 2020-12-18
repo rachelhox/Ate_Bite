@@ -22,7 +22,7 @@ const UseVoting = (roomId) => {
 
         Axios.post(`${SERVER_URL}/voting/existing`, { roomId })
         .then(function (response){
-            console.log(response.data[0])
+            // console.log(response.data[0])
             for (let i = 0; i < response.data.length; i++) {
                 // console.log(response.data[i].resto)
                 let incomingInfo = response.data[i]

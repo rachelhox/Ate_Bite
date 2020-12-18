@@ -5,6 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { JoinRoomForm } from "./join_room";
 import { MakeRoomForm } from "./make_room";
 import { ITabPanelProps } from "../../interfaces";
 import { RoomNavCSS } from "./styles";
@@ -59,7 +60,7 @@ export const RoomNav = (props: ITabPanelProps) => {
         <MakeRoomForm />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <JoinRoomForm />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three

@@ -4,8 +4,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
-export const MakeRoomForm = () => {
-  const [inputs, setInputs] = useState({ roomname: "" });
+export const JoinRoomForm = () => {
+  const [inputs, setInputs] = useState({ roomcode: "" });
   console.log(inputs);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -21,10 +21,10 @@ export const MakeRoomForm = () => {
         <form noValidate autoComplete="off">
           <TextField
             id="outlined-name"
-            label="Room Name"
-            name="roomname"
+            label="Join A Room"
+            name="roomcode"
             placeholder="Enter username"
-            value={inputs.roomname}
+            value={inputs.roomcode}
             onChange={handleChange}
             variant="outlined"
           />
@@ -34,4 +34,4 @@ export const MakeRoomForm = () => {
   );
 };
 
-export default MakeRoomForm;
+export default JoinRoomForm;

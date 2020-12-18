@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Marker, InfoWindow, StandaloneSearchBox} from "@react-google-maps/api";
 
 export const SearchBox = () => {
+    const [selectedCenter, setSelectedCenter] = useState(null);
+
     const [places, setPlaces] = useState([]);
 
     const searchBox = useRef();
@@ -55,8 +57,29 @@ export const SearchBox = () => {
                 (<Marker
                     key={i}
                     position={{ lat: place.lat, lng: place.lng }}
+                    onClick={() => {
+                        setSelectedCenter({
+                            lat: place.lat,
+                            lng: place.lng,
+                            name: place.name
+                        });
+                        // console.log('clicked');
+                     }}
                 />))
             }
+            {selectedCenter && (
+                <InfoWindow
+                    onCloseClick={() => {
+                        setSelectedCenter(null);
+                    }}
+                    position={{
+                        lat: selectedCenter.lat,
+                        lng: selectedCenter.lng
+                    }}
+                >
+                    <div>{selectedCenter.name}</div>
+                </InfoWindow>
+            )}
             {/* {places.map((place, i) => 
                 (<InfoWindow
                     key={i}

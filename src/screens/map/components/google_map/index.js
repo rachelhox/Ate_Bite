@@ -3,6 +3,7 @@ import { GoogleMapCSS } from "./styles";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import socketIOClient from "socket.io-client";
 import SearchBox from "../search_box";
+import Locator from "../locator";
 
 // for socket
 const ENDPOINT = "http://127.0.0.1:4000";
@@ -32,6 +33,7 @@ export const MyMap = () => {
     // markers invoked by user click event
     const [markers, setMarkers] = useState([]);
 
+
     const handleClick = (event) => {
         // we have to emit user id from here too so when rendering markers we can retrieve
         // the user icon for markers
@@ -60,6 +62,7 @@ export const MyMap = () => {
 
     const onMapClick = useCallback(handleClick, []);
 
+    // socket
     socket.on('marker', data => {
         // console.log(data);
         setMarkers(markers.concat(data));
@@ -70,20 +73,41 @@ export const MyMap = () => {
         mapRef.current = map;
     }, []);
 
+    // passed to locator
+    const panTo = useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom(14);
+    }, []);
+
     if (loadError) return "Error loading map";
     if (!isLoaded) return "Loading map";
+
+    // useEffect(() => {
+    //     navigator.geolocation.getCurrentPosition(
+    //       (position) => {
+    //         let currentLocation = {
+    //             lat: position.coords.latitude,
+    //             lng: position.coords.longitude,
+    //         }
+    //         return currentLocation;
+    //       },
+    //       () => null
+    //     );
+    // }, [])
+
 
     return (
         <div>
             <GoogleMap
             mapContainerStyle={mapContainerStyle}
-            zoom={8}
+            zoom={15}
             center={center}
             options={options}
             onClick={onMapClick}
             onLoad={onMapLoad}
             >
             <SearchBox />
+            <Locator panTo={panTo} />
             {markers.map((marker, i) => 
                 (<Marker
                     key={i}

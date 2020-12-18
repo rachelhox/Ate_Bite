@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Marker, InfoWindow, StandaloneSearchBox} from "@react-google-maps/api";
+import Button from '@material-ui/core/Button';
 
 export const SearchBox = () => {
     const [selectedCenter, setSelectedCenter] = useState(null);
@@ -16,12 +17,15 @@ export const SearchBox = () => {
         let allPlaces = await allInfo.map((place, i) => {
             return {
                 name: place.name,
+                address: place.formatted_address,
+                price: place.price_level,
+                rating: place.rating,
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng(),
                 id: i,
             }
         })
-        console.log(allPlaces);
+        // console.log(allPlaces);
         setPlaces(allPlaces);
     };
 
@@ -62,7 +66,8 @@ export const SearchBox = () => {
                         setSelectedCenter({
                             lat: place.lat,
                             lng: place.lng,
-                            name: place.name
+                            name: place.name,
+                            address: place.address
                         });
                         // console.log('clicked');
                      }}
@@ -78,7 +83,18 @@ export const SearchBox = () => {
                         lng: selectedCenter.lng
                     }}
                 >
-                    <div>{selectedCenter.name}</div>
+                    <div>
+                        <p>{selectedCenter.name}</p>
+                        <br />
+                        <p>{selectedCenter.address}</p>
+                        <form>
+                            <Button
+                                variant="contained"
+                            >
+                                I want this!
+                            </Button>
+                        </form>                       
+                    </div>
                 </InfoWindow>
             )}
             {/* {places.map((place, i) => 

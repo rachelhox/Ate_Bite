@@ -7,6 +7,7 @@ import Popover from "@material-ui/core/Popover";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import validator from "validator";
 import {
   loginUserThunk,
   loginFacebookThunk,
@@ -97,17 +98,18 @@ const SignInUpBtn = (props: any) => {
   const [canSubmit, setCanSubmit] = useState(false);
   const history = useHistory();
   useEffect(() => {
-    if (inputs.email && inputs.password) {
+    if (validator.isEmail(inputs.email) && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  if (props.isAuthenticated) {
-    setLoggedin(true)
-  }
+    if (props.isAuthenticated) {
+      setLoggedin(true);
+    }
 
     if (loggedin === true) {
-      history.push('/dashboard');
+      let userId = localStorage.getItem("userId");
+      history.push(`/dashboard/${userId}`);
     }
   }, [inputs, history, loggedin, props.isAuthenticated]);
 
@@ -120,8 +122,8 @@ const SignInUpBtn = (props: any) => {
   };
 
   const handleClickSignUp = () => {
-    history.push('/sign-up');
-  }
+    history.push("/sign-up");
+  };
 
   // for styling paper
   const classesPaper = useStylesPaper();

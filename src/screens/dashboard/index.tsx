@@ -1,13 +1,15 @@
 import React from "react";
-import logo from "/static/icons/ate-bite-logo.png";
+import logo from "../../static/icons/ate-bite-logo.png";
+import { DashboardCSS } from "./styles";
 import { RoomNav } from "./components";
 
 export const Dashboard = () => {
   return (
     <>
-      {/* <img src={logo} />; */}
-      <h1>hi</h1>
-      <RoomNav />
+      <DashboardCSS>
+        <img src={logo} alt="logo" />
+        <RoomNav value="" index={0} />
+      </DashboardCSS>
     </>
   );
 };

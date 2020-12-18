@@ -5,7 +5,7 @@ import { NavBar } from "../components";
 const DashboardPage = () => {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <Hello />
     </>
   );

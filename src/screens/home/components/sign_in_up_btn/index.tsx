@@ -57,8 +57,8 @@ const mapStateToProps = (state: any) => {
 };
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    loginRedux: (username: any, password: any) => {
-      dispatch(loginUserThunk(username, password));
+    loginRedux: (email: any, password: any) => {
+      dispatch(loginUserThunk(email, password));
     },
     loginFacebookRedux: (accessToken: any) => {
       dispatch(loginFacebookThunk(accessToken));
@@ -86,7 +86,7 @@ const SignInUpBtn = (props: any) => {
   const id = open ? "simple-popover" : undefined;
 
   // handle sign in form inputs
-  const [inputs, setInputs] = useState({ username: "", password: "" });
+  const [inputs, setInputs] = useState({ email: "", password: "" });
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     setInputs((inputs) => ({
@@ -97,7 +97,7 @@ const SignInUpBtn = (props: any) => {
   const [canSubmit, setCanSubmit] = useState(false);
   const history = useHistory();
   useEffect(() => {
-    if (inputs.username && inputs.password) {
+    if (inputs.email && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
@@ -112,7 +112,7 @@ const SignInUpBtn = (props: any) => {
   }, [inputs, history, loggedin, props.isAuthenticated]);
 
   const handleSubmit = async () => {
-    await props.loginRedux(inputs.username, inputs.password);
+    await props.loginRedux(inputs.email, inputs.password);
     setLoggedin(true);
   };
   const handleLogOut = () => {
@@ -161,10 +161,10 @@ const SignInUpBtn = (props: any) => {
           <FormControl classes={{ root: classesForm.root }}>
             <TextField
               id="outlined-name"
-              label="Username"
-              name="username"
-              placeholder="Enter username"
-              value={inputs.username}
+              label="Email Address"
+              name="email"
+              placeholder="Enter email address"
+              value={inputs.email}
               onChange={handleChange}
               variant="outlined"
               classes={{ root: classesInput.root }}

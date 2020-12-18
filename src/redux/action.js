@@ -17,11 +17,11 @@ function loginFailureActionCreator(message) {
   };
 }
 
-export function loginUserThunk(username, password) {
+export function loginUserThunk(email, password) {
   return (dispatch) => {
     return axios
       .post(`http://localhost:4000/signin`, {
-        username: username,
+        email: email,
         password: password,
       })
       .then((response) => {

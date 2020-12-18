@@ -52,7 +52,7 @@ export const RoomNav = (props: ITabPanelProps) => {
           aria-label="simple tabs example"
         >
           <Tab label="Make A Room" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Join A Room" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </AppBar>

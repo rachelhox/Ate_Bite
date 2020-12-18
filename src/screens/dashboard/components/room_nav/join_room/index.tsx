@@ -21,7 +21,7 @@ export const JoinRoomForm = () => {
         <form noValidate autoComplete="off">
           <TextField
             id="outlined-name"
-            label="Join A Room"
+            label="Room Code"
             name="roomcode"
             placeholder="Enter username"
             value={inputs.roomcode}

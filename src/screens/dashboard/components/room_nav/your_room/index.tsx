@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Link from "react-router-dom";
 import { useHistory, useParams } from "react-router-dom";
+import { YourRoomCSS } from "./styles";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
@@ -34,15 +35,19 @@ export const YourRooms = () => {
       <div>
         {roomInfo.map((x, i) => {
           return (
-            <div className="myRoom">
-              <button
+            <YourRoomCSS>
+              <Button
                 onClick={() => {
                   history.push(`/room/${x.roomcode}/${user.userId}`);
                 }}
+                key={i}
               >
-                {x.roomname}#{x.roomcode}
-              </button>
-            </div>
+                <div>
+                  <h1>{x.roomname}</h1>
+                  <br />#{x.roomcode}
+                </div>
+              </Button>
+            </YourRoomCSS>
           );
         })}
       </div>

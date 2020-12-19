@@ -22,7 +22,6 @@
     "redux-thunk": "^2.3.0",
     "socket.io-client": "^3.0.4",
     "styled-components": "^5.2.1",
-    "use-places-autocomplete": "^1.6.1",
     "validator": "^13.5.2",
     "web-vitals": "^0.2.4"
   },

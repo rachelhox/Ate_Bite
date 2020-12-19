@@ -15,12 +15,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import HomePage from "./pages/index";
 import SignUpPage from "./pages/sign-up";
-<<<<<<< HEAD
 import MapPage from "./pages/map";
-=======
 import DashboardPage from "./pages/dashboard"
 import RoomPage from "./pages/room";
->>>>>>> master
 import { connect } from "react-redux";
 
 const PurePrivateRoute = ({ component, isAuthenticated, ...rest }) => {

@@ -5,13 +5,13 @@ import { useHistory, useParams } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
-export const MakeRoomForm = () => {
+export const JoinRoomForm = () => {
   const history = useHistory();
-  const userId = localStorage.getItem("userId");
-  const [inputs, setInputs] = useState({ roomname: "" });
+  let user: any = useParams();
+  const [inputs, setInputs] = useState({ roomcode: "" });
   const [canSubmit, setCanSubmit] = useState(false);
   useEffect(() => {
-    if (inputs.roomname) {
+    if (inputs.roomcode) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
@@ -29,22 +29,22 @@ export const MakeRoomForm = () => {
     if (event) {
       event.preventDefault();
       axios
-        .post(process.env.REACT_APP_SERVER_URL + "/madeRoom", {
-          roomname: inputs.roomname,
-          userId: userId,
+        .post(process.env.REACT_APP_SERVER_URL + "/joinRoom", {
+          roomcode: inputs.roomcode,
+          userId: user.userId,
         })
         .then((res) => {
           if (res.status === 200) {
-            localStorage.setItem("roomcode", res.data.roomcode);
-            console.log(res.data.roomcode);
-
-            toast.success("Room's Successfully Made 🚀");
-            history.push(`/room/${res.data.roomcode}/${userId}`);
+            localStorage.setItem("roomcode", inputs.roomcode);
+            console.log(inputs.roomcode);
+            toast.success("Room's Successfully Joined 🚀");
+            history.push(`/room/${inputs.roomcode}/${user.userId}`);
           }
         })
         .catch((err) => {
           console.log(err);
-          toast.error("Error 🚫");
+          console.log(user.userId);
+          toast.error("This Room Does Not Exist Yet 🚫");
         });
     }
   };
@@ -55,10 +55,10 @@ export const MakeRoomForm = () => {
         <form noValidate autoComplete="off">
           <TextField
             id="outlined-name"
-            label="Room Name"
-            name="roomname"
+            label="Room Code"
+            name="roomcode"
             placeholder="Enter username"
-            value={inputs.roomname}
+            value={inputs.roomcode}
             onChange={handleChange}
             variant="outlined"
           />
@@ -69,7 +69,7 @@ export const MakeRoomForm = () => {
             color="primary"
             onClick={handleSubmit}
           >
-            Make A Room
+            Join A Room
           </Button>
         </form>
       </div>
@@ -77,4 +77,4 @@ export const MakeRoomForm = () => {
   );
 };
 
-export default MakeRoomForm;
+export default JoinRoomForm;

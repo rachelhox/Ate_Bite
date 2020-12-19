@@ -42,11 +42,6 @@ export const JoinRoomForm = () => {
             history.push(`/room/${inputs.roomcode}/${user.userId}`);
           }
         })
-        // .catch((err) => {
-        //   console.log(err.response.status);
-        //   // console.log(user.userId);
-        //   toast.error("This Room Does Not Exist Yet 🚫");
-        // });
         .catch((reason: AxiosError) => {
           if (reason.response!.status === 403) {
             toast.error("You Have Joined The Room Already 🚫");

@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 
-const NEW_VOTE_EVENT= 'newVotingOption'; //name of the event 
+const NEW_VOTE_EVENT= 'newVotingOption';
 const NEW_FEED_MESSAGE_EVENT= 'newFeedvotingOption';
 const SERVER_URL='http://localhost:4000'
 

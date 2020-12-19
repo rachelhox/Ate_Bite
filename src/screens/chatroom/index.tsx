@@ -7,14 +7,14 @@ import useChat from './hooks/useChat'
 const Chat = (props) => {
   
     // const { roomId } = 'test'; //getting roomID from URL
-    const roomId = 'test'
+    const roomId = '13'
     const { messages, sendMessage } = useChat(roomId); //creates a websocket and manages messaging
     const [newMessage, setNewMessage] = React.useState(''); //setting the messages to be sent 
   
     const handleNewMessageChange = (event) => {
       setNewMessage(event.target.value);
     };
-  
+
     const handleSendMessage = () => {
       sendMessage(newMessage);
       setNewMessage('');
@@ -33,7 +33,7 @@ const Chat = (props) => {
                 className={`messageItem ${
                   message.ownedByCurrentUser ? 'myMessage' : 'receivedMessage'
                 }`}>
-                  {message.body}
+                  {message.message}
                 </li>
             ))}
             </div>

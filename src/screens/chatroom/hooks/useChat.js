@@ -1,24 +1,38 @@
+import Axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 
 const NEW_CHAT_MESSAGE_EVENT= 'newChatMessage'; //name of the event 
 const NEW_FEED_MESSAGE_EVENT= 'newFeedMessage';
-const SOCKET_SERVER_URL='http://localhost:4000'
+const SERVER_URL='http://localhost:4000'
+
+// const user_Id = window.localStorage.getItem(userId)
+// console.log(user_Id)
 
 const UseChat = (roomId) => {
     
     const [messages, setMessages] = useState([]); //sent and received messages
     const socketRef = useRef();
+ 
 
     useEffect(()=>{
         //creates a WebSocket connection
-      socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
+      socketRef.current = socketIOClient(SERVER_URL, {
             query: { roomId }, 
             transports: ['websocket'],
         });
         
         //listens for previous messages, when someone joins the room, use the sockerRef.current.on code below but make it for checking previous messages by querying the DB using room_id which should be in the URL. UseEffect is like onload, so it should run it in here.
 
+        Axios.post(`${SERVER_URL}/chatroom/existing`, { roomId })
+        .then(function (response){
+            console.log(response.data[0])
+            for (let i = 0; i < response.data.length; i++) {
+                console.log(response.data[i].message)
+                let incomingInfo = response.data[i]
+                setMessages((messages)=> [...messages, incomingInfo]);
+              }
+        })
 
         //listens for incoming messages
         socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message)=>{ 
@@ -43,7 +57,8 @@ const UseChat = (roomId) => {
         // console.log(addSpaces)
         // console.log(messageBody)
         socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT,{
-            body: messageBody,
+            message: messageBody,
+            rooms_id: roomId,
             senderId: socketRef.current.id,
         });
         //this is actually an issue, because if the message fails to upload to the db and so gives an error, this will still emit to the feed. this will do for now, but later need to have this emitting once the message is received, not on sent- can put received into variable like this sendMessage, put the below emit into it and return the variable?

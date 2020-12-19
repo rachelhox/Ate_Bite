@@ -19,4 +19,7 @@ export const YourRoomCSS = styled.div`
   h1 {
     margin-bottom: 0rem;
   }
+  p {
+    text-transform: lowercase;
+  }
 `;

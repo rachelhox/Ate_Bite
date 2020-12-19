@@ -36,8 +36,8 @@ export const HomeJoin = () => {
         })
         .then((res) => {
           if (res.status === 200) {
-            toast.success("success");
-            // history.push(`/room/${x.roomcode}/${user.userId}`);
+            toast.success("Join Room Successfully");
+            history.push(`/room/${inputs.roomcode}/${res.data.userId}/random`);
           }
         })
         .catch((err) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { toast } from "react-toastify";
 import { useHistory, useParams } from "react-router-dom";
+import { JoinRoomCSS } from "./styles";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 
@@ -51,7 +52,7 @@ export const JoinRoomForm = () => {
 
   return (
     <>
-      <div className="form">
+      <JoinRoomCSS>
         <form noValidate autoComplete="off">
           <TextField
             id="outlined-name"
@@ -72,7 +73,7 @@ export const JoinRoomForm = () => {
             Join A Room
           </Button>
         </form>
-      </div>
+      </JoinRoomCSS>
     </>
   );
 };

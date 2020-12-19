@@ -44,7 +44,7 @@ export const YourRooms = () => {
               >
                 <div>
                   <h1>{x.roomname}</h1>
-                  <br />#{x.roomcode}
+                  <br /><p>#{x.roomcode}</p>
                 </div>
               </Button>
             </YourRoomCSS>

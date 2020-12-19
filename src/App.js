@@ -54,6 +54,7 @@ export default function App() {
           <Route exact path="/" component={HomePage} />
           <Route path="/sign-up" component={SignUpPage} />
           <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
+          <Route path="/room/:roomcode/:userId/random" component={RoomPage} />
           <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
         </Switch>
       </Router>

@@ -17,11 +17,11 @@ function loginFailureActionCreator(message) {
   };
 }
 
-export function loginUserThunk(username, password) {
+export function loginUserThunk(email, password) {
   return (dispatch) => {
     return axios
       .post(`http://localhost:4000/signin`, {
-        username: username,
+        email: email,
         password: password,
       })
       .then((response) => {
@@ -35,6 +35,7 @@ export function loginUserThunk(username, password) {
           );
         } else {
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("userId", response.data.id);
           dispatch(loginSuccessActionCreator());
           console.log(response.data.token);
         }
@@ -54,6 +55,7 @@ export function logoutSuccessActionCreator() {
 export function logoutNowThunk() {
   return (dispatch) => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     dispatch(logoutSuccessActionCreator());
   };
 }

@@ -20,6 +20,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import GlobalCSS from "./styles/global";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Provider } from "react-redux";
 import App from "./App";
@@ -31,6 +33,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <GlobalCSS />
+      <ToastContainer position="top-center" autoClose={6000} />
       <App />
     </BrowserRouter>
   </Provider>,

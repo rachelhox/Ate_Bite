@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import validator from "validator";
+import { useHistory, useParams } from "react-router-dom";
 import { SignUpFormCSS } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -6,13 +9,15 @@ import axios from "axios";
 import logoSmall from "../../../../static/icons/ate-bite-small-logo.png";
 
 export const SignUpForm = () => {
+  const history = useHistory();
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
     password: "",
   });
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    console.log(event.target);
     setInputs((inputs) => ({
       ...inputs,
       [name]: value,
@@ -20,7 +25,7 @@ export const SignUpForm = () => {
   };
   const [canSubmit, setCanSubmit] = useState(false);
   useEffect(() => {
-    if (inputs.username && inputs.email && inputs.password) {
+    if (inputs.username && validator.isEmail(inputs.email) && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
@@ -35,8 +40,16 @@ export const SignUpForm = () => {
         email: inputs.email,
         password: inputs.password,
       })
-      .then(() => {
-        console.log("sign up");
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Sign up success 🚀");
+          console.log(res.data.userId);
+
+          history.push(`/`);
+        }
+      })
+      .catch((err) => {
+        toast.error("Sign up failed ❗️");
       });
   };
 

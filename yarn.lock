@@ -3508,7 +3508,12 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-clsx@^1.0.4:
+clone@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
+  integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+
+clsx@^1.0.4, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
@@ -3540,7 +3545,7 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
-color-convert@^1.9.0, color-convert@^1.9.1:
+color-convert@^1.3.0, color-convert@^1.9.0, color-convert@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
   integrity sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==
@@ -3564,6 +3569,13 @@ color-name@^1.0.0, color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
+color-string@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/color-string/-/color-string-0.3.0.tgz#27d46fb67025c5c2fa25993bfbf579e47841b991"
+  integrity sha1-J9RvtnAlxcL6JZk7+/V55HhBuZE=
+  dependencies:
+    color-name "^1.0.0"
+
 color-string@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.5.4.tgz#dd51cd25cfee953d138fe4002372cc3d0e504cb6"
@@ -3571,6 +3583,15 @@ color-string@^1.5.4:
   dependencies:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
+
+color@^0.11.1:
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/color/-/color-0.11.4.tgz#6d7b5c74fb65e841cd48792ad1ed5e07b904d764"
+  integrity sha1-bXtcdPtl6EHNSHkq0e1eB7kE12Q=
+  dependencies:
+    clone "^1.0.2"
+    color-convert "^1.3.0"
+    color-string "^0.3.0"
 
 color@^3.0.0:
   version "3.1.3"
@@ -9374,6 +9395,13 @@ raf@^3.4.1:
   dependencies:
     performance-now "^2.1.0"
 
+random-color@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/random-color/-/random-color-1.0.1.tgz#fcfde5d054eefed8b90a8e39ebb06973c40253b1"
+  integrity sha1-/P3l0FTu/ti5Co4567Bpc8QCU7E=
+  dependencies:
+    color "^0.11.1"
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -9581,7 +9609,16 @@ react-scripts@4.0.1:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react-transition-group@^4.4.0:
+react-toastify@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-6.2.0.tgz#f2d76747c70b9de91f71f253d9feae6b53dc836c"
+  integrity sha512-XpjFrcBhQ0/nBOL4syqgP/TywFnOyxmstYLWgSQWcj39qpp+WU4vPt3C/ayIDx7RFyxRWfzWTdR2qOcDGo7G0w==
+  dependencies:
+    clsx "^1.1.1"
+    prop-types "^15.7.2"
+    react-transition-group "^4.4.1"
+
+react-transition-group@^4.4.0, react-transition-group@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.1.tgz#63868f9325a38ea5ee9535d828327f85773345c9"
   integrity sha512-Djqr7OQ2aPUiYurhPalTrVy9ddmFCCzwhqQmtN+J3+3DzLO209Fdr70QrN8Z3DsglWql6iY1lDWAfpFiBtuKGw==
@@ -11398,11 +11435,6 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-use-places-autocomplete@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/use-places-autocomplete/-/use-places-autocomplete-1.6.1.tgz#9183f0ecea142b6d753703e9edcd9f0c7ccbf27d"
-  integrity sha512-WnI25R44Zt8igvOhrQGm6uwwxJr2bia+97d4ASKWhObEJfwu3CxWuC/6vrbFkXGb/7eO6WRkPWP1ZQ6Xif0D8g==
-
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
@@ -11486,6 +11518,11 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+validator@^13.5.2:
+  version "13.5.2"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.5.2.tgz#c97ae63ed4224999fb6f42c91eaca9567fe69a46"
+  integrity sha512-mD45p0rvHVBlY2Zuy3F3ESIe1h5X58GPfAtslBjY7EtTqGquZTj+VX/J4RnHWN8FKq0C9WRVt1oWAcytWRuYLQ==
 
 value-equal@^1.0.1:
   version "1.0.1"

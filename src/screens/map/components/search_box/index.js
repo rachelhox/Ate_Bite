@@ -25,7 +25,7 @@ export const SearchBox = () => {
                 id: i,
             }
         })
-        // console.log(allPlaces);
+        console.log(allPlaces);
         setPlaces(allPlaces);
     };
 

@@ -7,6 +7,7 @@ import Popover from "@material-ui/core/Popover";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import validator from "validator";
 import {
   loginUserThunk,
   loginFacebookThunk,
@@ -20,6 +21,7 @@ import {
   Link,
 } from "react-router-dom";
 import SignUp from "../../../sign_up";
+import { useHistory } from "react-router-dom";
 
 // styling for paper
 const useStylesPaper = makeStyles({
@@ -56,8 +58,8 @@ const mapStateToProps = (state: any) => {
 };
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    loginRedux: (username: any, password: any) => {
-      dispatch(loginUserThunk(username, password));
+    loginRedux: (email: any, password: any) => {
+      dispatch(loginUserThunk(email, password));
     },
     loginFacebookRedux: (accessToken: any) => {
       dispatch(loginFacebookThunk(accessToken));
@@ -69,6 +71,8 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const SignInUpBtn = (props: any) => {
+  const [loggedin, setLoggedin] = useState(false);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event: any) => {
@@ -83,7 +87,7 @@ const SignInUpBtn = (props: any) => {
   const id = open ? "simple-popover" : undefined;
 
   // handle sign in form inputs
-  const [inputs, setInputs] = useState({ username: "", password: "" });
+  const [inputs, setInputs] = useState({ email: "", password: "" });
   const handleChange = (event: any) => {
     const { name, value } = event.target;
     setInputs((inputs) => ({
@@ -92,20 +96,35 @@ const SignInUpBtn = (props: any) => {
     }));
   };
   const [canSubmit, setCanSubmit] = useState(false);
+  const history = useHistory();
   useEffect(() => {
-    if (inputs.username && inputs.password) {
+    if (validator.isEmail(inputs.email) && inputs.password) {
       setCanSubmit(true);
     } else if (canSubmit) {
       setCanSubmit(false);
     }
-  }, [inputs]);
+    if (props.isAuthenticated) {
+      setLoggedin(true);
+    }
+
+    if (loggedin === true) {
+      let userId = localStorage.getItem("userId");
+      history.push(`/dashboard/${userId}`);
+    }
+  }, [inputs, history, loggedin, props.isAuthenticated]);
 
   const handleSubmit = async () => {
-    await props.loginRedux(inputs.username, inputs.password);
+    await props.loginRedux(inputs.email, inputs.password);
+    setLoggedin(true);
   };
   const handleLogOut = () => {
     props.logoutRedux();
   };
+
+  const handleClickSignUp = () => {
+    history.push("/sign-up");
+  };
+
   // for styling paper
   const classesPaper = useStylesPaper();
   // for styling form
@@ -144,10 +163,10 @@ const SignInUpBtn = (props: any) => {
           <FormControl classes={{ root: classesForm.root }}>
             <TextField
               id="outlined-name"
-              label="Username"
-              name="username"
-              placeholder="Enter username"
-              value={inputs.username}
+              label="Email Address"
+              name="email"
+              placeholder="Enter email address"
+              value={inputs.email}
               onChange={handleChange}
               variant="outlined"
               classes={{ root: classesInput.root }}
@@ -176,8 +195,9 @@ const SignInUpBtn = (props: any) => {
               variant="contained"
               color="primary"
               classes={{ root: classesBtn.root }}
+              onClick={handleClickSignUp}
             >
-              <Link to="/sign-up">sign up</Link>
+              sign up
             </Button>
             <Button
               type="submit"

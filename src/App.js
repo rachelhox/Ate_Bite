@@ -16,6 +16,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import HomePage from "./pages/index";
 import SignUpPage from "./pages/sign-up";
 import MapPage from "./pages/map";
+import DashboardPage from "./pages/dashboard"
+import RoomPage from "./pages/room";
 import { connect } from "react-redux";
 
 const PurePrivateRoute = ({ component, isAuthenticated, ...rest }) => {
@@ -30,7 +32,7 @@ const PurePrivateRoute = ({ component, isAuthenticated, ...rest }) => {
             ) : (
                 <Redirect
                 to={{
-                    pathname: "/sign-up",
+                    pathname: "/",
                 }}
                 />
             )
@@ -52,7 +54,12 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/sign-up" component={SignUpPage} />
-          <Route path="/map" component={MapPage} />
+          {/* <PrivateRoute path="/map/:roomcode/:userId" component={MapPage} /> */}
+          <Route path="/map/random/:roomcode/:userId" component={MapPage} />
+          {/* <Route path="/map" component={MapPage} /> */}
+          <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
+          <Route path="/room/:roomcode/:userId/random" component={RoomPage} />
+          <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
         </Switch>
       </Router>
     );

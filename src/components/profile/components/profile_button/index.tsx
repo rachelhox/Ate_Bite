@@ -7,7 +7,7 @@ import Popover from "@material-ui/core/Popover";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import validator from "validator";
 import axios from "axios";
 import {
@@ -195,7 +195,7 @@ const ProfileBtn = (props: any) => {
       >
         <ClickAwayListener onClickAway={handleClose}>
           <FormControl classes={{ root: classesForm.root }}>
-            <TextField
+            {/* <TextField
               id="outlined-name"
               label="Email Address"
               name="email"
@@ -232,7 +232,7 @@ const ProfileBtn = (props: any) => {
               onClick={handleClickSignUp}
             >
               sign up
-            </Button>
+            </Button> */}
             <Button
               type="submit"
               variant="outlined"

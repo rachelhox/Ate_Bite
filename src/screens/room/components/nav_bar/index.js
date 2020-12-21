@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { MyMap } from "../../../map/components";
-import { MakeRoomForm } from "./make_room";
+import { RoomHome } from "./home_room";
 import { RoomNavCSS } from "./styles";
 
 function TabPanel(props) {
@@ -55,8 +55,11 @@ export const NavBar = (props) => {
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <MakeRoomForm />
+      <TabPanel className="homeroom" value={value} index={0}>
+        {/* Rachel's Home component: */}
+        <h3>Member List</h3>
+        <hr/>
+        <RoomHome />
       </TabPanel>
       <TabPanel value={value} index={1}>
         {/* Mika's Map component: */}

@@ -57,7 +57,8 @@ export const NavBar = (props) => {
       </AppBar>
       <TabPanel className="homeroom" value={value} index={0}>
         {/* Rachel's Home component: */}
-        <h1>Room List</h1>
+        <h3>Member List</h3>
+        <hr/>
         <RoomHome />
       </TabPanel>
       <TabPanel value={value} index={1}>

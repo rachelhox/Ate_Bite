@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const RoomNavCSS = styled.div`
+  p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .MuiPaper-elevation4 {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2),
       0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 10px 8px 0px rgba(0, 0, 0, 0.12);

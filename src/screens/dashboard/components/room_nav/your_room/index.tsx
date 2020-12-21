@@ -9,17 +9,16 @@ import axios from "axios";
 export const YourRooms = () => {
   const history = useHistory();
   let user: any = useParams();
-  const [inputs, setInputs] = useState({ roomname: "" });
+  // const [inputs, setInputs] = useState({ roomname: "" });
   const [roomInfo, setRoomInfo] = useState([]);
-  console.log(inputs);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    console.log(event.target);
-    setInputs((inputs) => ({
-      ...inputs,
-      [name]: value,
-    }));
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = event.target;
+  //   console.log(event.target);
+  //   setInputs((inputs) => ({
+  //     ...inputs,
+  //     [name]: value,
+  //   }));
+  // };
   useEffect(() => {
     axios
       .get(
@@ -44,7 +43,8 @@ export const YourRooms = () => {
               >
                 <div>
                   <h1>{x.roomname}</h1>
-                  <br /><p>#{x.roomcode}</p>
+                  <br />
+                  <p>#{x.roomcode}</p>
                 </div>
               </Button>
             </YourRoomCSS>

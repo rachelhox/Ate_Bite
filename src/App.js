@@ -56,6 +56,7 @@ export default function App() {
           <Route path="/sign-up" component={SignUpPage} />
           <Route path="/map" component={MapPage} />
           <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
+          <Route path="/room/:roomcode/:userId/random" component={RoomPage} />
           <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
         </Switch>
       </Router>

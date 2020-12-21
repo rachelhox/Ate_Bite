@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useHistory, useParams } from "react-router-dom";
 import { JoinRoomCSS } from "./styles";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
+import axios, { AxiosResponse, AxiosError } from 'axios'
 
 export const JoinRoomForm = () => {
   const history = useHistory();
@@ -37,16 +37,20 @@ export const JoinRoomForm = () => {
         .then((res) => {
           if (res.status === 200) {
             localStorage.setItem("roomcode", inputs.roomcode);
-            console.log(inputs.roomcode);
+            // console.log(inputs.roomcode);
             toast.success("Room's Successfully Joined 🚀");
             history.push(`/room/${inputs.roomcode}/${user.userId}`);
           }
         })
-        .catch((err) => {
-          console.log(err);
-          console.log(user.userId);
-          toast.error("This Room Does Not Exist Yet 🚫");
-        });
+        .catch((reason: AxiosError) => {
+          if (reason.response!.status === 403) {
+            toast.error("You Have Joined The Room Already 🚫");
+          } else if (reason.response!.status === 401) {
+            toast.error("This Room Does Not Exist Yet 🚫");
+          } else {
+            toast.error("Error");
+          }
+        })
     }
   };
 

@@ -10,8 +10,8 @@ const useMarker = (roomcode) => {
     const socketRef = useRef();
     useEffect(() => {
         socketRef.current = socketIOClient(ENDPOINT, {
-                query: { roomcode },
-                transports: ['websocket']
+            query: { roomcode },
+            transports: ['websocket']
         });
 
         socketRef.current.on(MARKER, data => {

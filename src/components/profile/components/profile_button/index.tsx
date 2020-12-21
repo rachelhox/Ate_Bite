@@ -133,7 +133,6 @@ const ProfileBtn = (props: any) => {
       backgroundColor: `${
         profileInfo && profileInfo[0] && profileInfo[0].piccolour
       }`,
-      // borderColor: "red",
     },
   });
 

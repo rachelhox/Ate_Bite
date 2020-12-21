@@ -195,7 +195,7 @@ const ProfileBtn = (props: any) => {
       >
         <ClickAwayListener onClickAway={handleClose}>
           <FormControl classes={{ root: classesForm.root }}>
-            <TextField
+            {/* <TextField
               id="outlined-name"
               label="Email Address"
               name="email"
@@ -232,7 +232,7 @@ const ProfileBtn = (props: any) => {
               onClick={handleClickSignUp}
             >
               sign up
-            </Button>
+            </Button> */}
             <Button
               type="submit"
               variant="outlined"

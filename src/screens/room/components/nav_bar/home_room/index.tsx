@@ -35,6 +35,18 @@ export const RoomHome = () => {
         setRoomInfo([...x]);
       });
   }, []);
+  // styling
+  // const useStylesColor = makeStyles({
+  //   root: {
+  //     borderColor: `${
+  //       room.piccolour
+  //     }`,
+  //     border: "solid 0.2rem",
+  //     backgroundColor: `${
+  //       x.piccolour
+  //     }`,
+  //   },
+  // });
   return (
     <>
       <RoomHomeCSS>
@@ -47,7 +59,16 @@ export const RoomHome = () => {
                 }}
                 key={i}
               > */}
-              <img src={x.propic} alt="" />
+              {/* <Button
+              classes={{ root: propicColor.root }}> */}
+              <div
+                style={{
+                  border: `solid 0.5rem ${x && x.piccolour}`,
+                  // borderColor: ``,
+                }}
+              >
+                <img src={x.propic} alt="" />
+              </div>
               <h3>{x.username}</h3>
               <br />
               <p>{x.email}</p>

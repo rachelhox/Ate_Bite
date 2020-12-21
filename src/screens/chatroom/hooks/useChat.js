@@ -1,10 +1,13 @@
 import Axios from 'axios';
+
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
+
 
 const NEW_CHAT_MESSAGE_EVENT= 'newChatMessage'; //name of the event 
 const NEW_FEED_MESSAGE_EVENT= 'newFeedMessage';
 const SERVER_URL='http://localhost:4000'
+
 
 const users_id = window.localStorage.getItem('userId')
 // console.log('original users ID:' + users_id)
@@ -22,8 +25,6 @@ const UseChat = (roomcode) => {
             query: { roomcode }, 
             transports: ['websocket'],
         });
-        
-        //listens for previous messages, when someone joins the room, use the sockerRef.current.on code below but make it for checking previous messages by querying the DB using room_id which should be in the URL. UseEffect is like onload, so it should run it in here.
 
         Axios.post(`${SERVER_URL}/chatroom/existing`, { roomcode })
         .then(function (response){
@@ -41,6 +42,9 @@ const UseChat = (roomcode) => {
         //listens for incoming messages
         socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message)=>{ 
              console.log(message)
+            //trying to get the relative time display working, but it isn't required and isn't working so will skip for now
+            //  let relativeTime = moment(message.time, 'DD/MM/YY  h:mma').fromNow()
+            //  console.log(relativeTime)
             const incomingMessage = {
                 ...message,
                 ownedByCurrentUser: message.users_id === users_id,

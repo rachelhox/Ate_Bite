@@ -5,10 +5,10 @@ export const ProfileBtnCSS = styled.div`
   top: 0px;
   right: 15px;
   padding: 1rem;
-  button {
+  .button {
     height: 5rem;
     width: 5rem;
-    background-color: transparent;
+    // background-color: transparent;
     border-radius: 50%;
     display: inline-block;
   }

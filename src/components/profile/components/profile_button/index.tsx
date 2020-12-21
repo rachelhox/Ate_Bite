@@ -118,11 +118,24 @@ const ProfileBtn = (props: any) => {
         if (first === true) {
           setProfileInfo([...x]);
         }
-
         // setProfileInfo(profileInfo.concat(x));
         // console.log(x);
       });
   }, [first]);
+
+  // styling
+  const useStylesColor = makeStyles({
+    root: {
+      borderColor: `${
+        profileInfo && profileInfo[0] && profileInfo[0].piccolour
+      }`,
+      border: "solid 0.2rem",
+      backgroundColor: `${
+        profileInfo && profileInfo[0] && profileInfo[0].piccolour
+      }`,
+      // borderColor: "red",
+    },
+  });
 
   const handleSubmit = async () => {
     await props.loginRedux(inputs.email, inputs.password);
@@ -145,19 +158,27 @@ const ProfileBtn = (props: any) => {
   // for styling submit btn
   const classesBtn = useStylesBtn();
 
+  const propicColor = useStylesColor();
+
+  // const imgBorder = {
+  //   border-color:
+  // }
+
   return (
     <ProfileBtnCSS>
-      <button
+      <Button
         aria-describedby={id}
         // variant="contained"
         // color="primary"
+        className="button"
         onClick={handleClick}
+        classes={{ root: propicColor.root }}
       >
         <img
           src={profileInfo && profileInfo[0] && profileInfo[0].propic}
           alt=""
         />
-      </button>
+      </Button>
       <Popover
         id={id}
         open={open}

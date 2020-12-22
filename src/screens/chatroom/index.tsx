@@ -3,6 +3,9 @@ import React from "react";
 // import { NavBar } from "@components";
 import { ChatroomCSS } from "./styles";
 import useChat from './hooks/useChat';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
 
 const Chat = () => {
   
@@ -30,30 +33,53 @@ const Chat = () => {
           <ol className='messagesList'>
             <div className='messagesPosition'>
             {messages.map((message, i)=>(
+              <div>
               <li
                 key={i}
                 className={`messageItem ${
                   message.ownedByCurrentUser ? 'myMessage' : 'receivedMessage'
                 }`}>
-                  <h2>{message.username}</h2>
-                  <h3>{message.time}</h3>
-
-                  {message.message}
+                  <h2 className="chat-text">{message.username}</h2>
+                  <hr className="chat-hr" />
+                  <h3 className="chat-text">{message.message}</h3>
+                  <h5 className="chat-text">{message.time}</h5>
+                  
                 </li>
+                </div>
             ))}
             </div>
           </ol>
         </div>
-        </div>
-          <textarea
+      </div>
+          {/* <textarea
             value={newMessage}
             onChange={handleNewMessageChange}
             placeholder='Write message...'
             className='newMessageInputField'
-          />
-          <button onClick={handleSendMessage} className='sendMessageButton'>
+          /> */}
+      <div className="chat-bottom">
+        <TextField
+          id="filled-multiline-static"
+          // label="Multiline"
+          multiline
+          rows={4}
+          value={newMessage}
+          placeholder='Write message...'
+          variant="filled"
+          onChange={handleNewMessageChange}
+        />
+          {/* <button onClick={handleSendMessage} className='sendMessageButton'>
             Send
-          </button>
+          </button> */}
+        <Button
+            variant="contained"
+            color="primary"
+            // classes={{ root: classesBtn.root }}
+            onClick={handleSendMessage}
+          >
+          send
+        </Button>
+      </div>
       
      </ChatroomCSS>
     );

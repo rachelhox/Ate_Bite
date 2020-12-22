@@ -57,9 +57,7 @@ export const NavBar = (props) => {
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <div className="whole">
-
-      
+      <div className="whole">      
       <Chat />
       <TabPanel className="homeroom" value={value} index={0}>
         {/* Rachel's Home component: */}

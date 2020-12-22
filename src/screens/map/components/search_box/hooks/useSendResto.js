@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 // for socket
 const NEW_VOTE_MAP_EVENT= 'newVotingOptionFromMap';
+const NEW_FEED_MAP_RESTO_EVENT = 'newFeedMapRestoEvent';
 const ENDPOINT = process.env.REACT_APP_SERVER_URL;
 
 const useSendResto = (roomcode, userId) => {
@@ -28,9 +29,15 @@ const useSendResto = (roomcode, userId) => {
     const emitResto = (selectedCenter) => {
         socketRef.current.emit(NEW_VOTE_MAP_EVENT, {
             resto: selectedCenter.name,
-            rooms_id: roomcode,
+            rooms_id: roomcode, // ????
             senderId: userId,
         });
+        // for adding an event on livefeed
+        socketRef.current.emit(NEW_FEED_MAP_RESTO_EVENT, {
+            userId: userId,
+            roomcode: roomcode,
+        });
+
     }
 
     return { emitResto };

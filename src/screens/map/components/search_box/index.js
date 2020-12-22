@@ -103,7 +103,7 @@ export const SearchBox = () => {
                         <form>
                             <Button
                                 variant="contained"
-                                onClick={emitResto(selectedCenter)}
+                                onClick={() => emitResto(selectedCenter)}
                             >
                                 I want this!
                             </Button>

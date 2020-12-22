@@ -105,13 +105,15 @@ const ProfileBtn = (props: any) => {
   const userId = gettingParams[gettingParams.length - 1];
   const [profileInfo, setProfileInfo] = useState([]);
   const [first, setFirst] = useState(false);
+  // to check if user is a random user or logged in user
+  const [random, setRandom] = useState(false);
   const history = useHistory();
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/getProfile/${userId}`)
       .then((data) => {
         let x = data.data;
-        console.log(x);
+        // console.log(x);
         if (x.length > 0) {
           setFirst(true);
         }
@@ -120,6 +122,10 @@ const ProfileBtn = (props: any) => {
         }
         // setProfileInfo(profileInfo.concat(x));
         // console.log(x);
+        console.log(x[0].loggedin);
+        if (x[0].loggedin === false) {
+          setRandom(true);
+        }
       });
   }, [first]);
 
@@ -165,6 +171,8 @@ const ProfileBtn = (props: any) => {
 
   return (
     <ProfileBtnCSS>
+      {random === false ?
+      <div>
       <Button
         aria-describedby={id}
         // variant="contained"
@@ -245,6 +253,23 @@ const ProfileBtn = (props: any) => {
           </FormControl>
         </ClickAwayListener>
       </Popover>
+      </div>
+      :
+      <div>
+        <Button
+        aria-describedby={id}
+        // variant="contained"
+        // color="primary"
+        className="random-button"
+        classes={{ root: propicColor.root }}
+      >
+        <img
+          src={profileInfo && profileInfo[0] && profileInfo[0].propic}
+          alt=""
+        />
+      </Button>
+      </div>
+      }
       {/* <Route path="/sign-up" component={SignUp} /> */}
     </ProfileBtnCSS>
   );

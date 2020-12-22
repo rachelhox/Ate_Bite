@@ -8,7 +8,6 @@ const NEW_CHAT_MESSAGE_EVENT= 'newChatMessage'; //name of the event
 const NEW_FEED_MESSAGE_EVENT= 'newFeedMessage';
 const SERVER_URL='http://localhost:4000'
 
-
 const users_id = window.localStorage.getItem('userId')
 // console.log('original users ID:' + users_id)
 // console.log(typeof(users_id))
@@ -50,6 +49,15 @@ const UseChat = (roomcode) => {
                 ownedByCurrentUser: message.users_id === users_id,
             }
             setMessages((messages)=> [...messages, incomingMessage]);
+
+        //actually gonna get rid of this for messages, but will keep it here for now to remember to put it into other things later
+        socketRef.current.emit(NEW_FEED_MESSAGE_EVENT,{
+                body: `${message.username} has sent a message`,
+                username: message.username,
+                propic: message.propic,
+                piccolour: message.piccolour
+
+            });
             // console.log(incomingMessage)
         });
 
@@ -66,13 +74,8 @@ const UseChat = (roomcode) => {
         // console.log(messageBody)
         socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT,{
             message: messageBody,
-            roomcode: roomcode,
-            users_id: users_id,
-        });
-        //this is actually an issue, because if the message fails to upload to the db and so gives an error, this will still emit to the feed. this will do for now, but later need to have this emitting once the message is received, not on sent- can put received into variable like this sendMessage, put the below emit into it and return the variable?
-        socketRef.current.emit(NEW_FEED_MESSAGE_EVENT,{
-            body: `${users_id} has sent a message`,
-            senderId: users_id,
+            roomcode,
+            users_id,
         });
     };  
     

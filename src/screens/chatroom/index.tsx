@@ -35,6 +35,9 @@ const Chat = () => {
                 className={`messageItem ${
                   message.ownedByCurrentUser ? 'myMessage' : 'receivedMessage'
                 }`}>
+                  <h2>{message.username}</h2>
+                  <h3>{message.time}</h3>
+
                   {message.message}
                 </li>
             ))}

@@ -4,7 +4,7 @@ import socketIOClient from 'socket.io-client'
 const NEW_FEED_MESSAGE_EVENT= 'newFeedMessage'; //name of the event 
 const SOCKET_SERVER_URL='http://localhost:4000'
 
-const UseFeed =(roomId) => {
+const UseFeed =(roomcode) => {
 
     const [feedMessages, setMessages] = useState([]); //sent and received messages
     const socketRef = useRef();
@@ -12,18 +12,14 @@ const UseFeed =(roomId) => {
     useEffect(()=>{
         //creates a WebSocket connection
       socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
-            query: { roomId }, 
+            query: { roomcode }, 
             transports: ['websocket'],
         });
 
         //listens for incoming messages
         socketRef.current.on(NEW_FEED_MESSAGE_EVENT, (message)=>{ 
-            //  console.log(message)
-            const incomingMessage = {
-                ...message,
-            }
-            setMessages((feedMessages)=> [...feedMessages, incomingMessage]);
-            // console.log(incomingMessage)
+        console.log(message)
+        setMessages((feedMessages)=> [...feedMessages, message]);
         });
 
         //destroys socket reference when connection is closed
@@ -31,17 +27,6 @@ const UseFeed =(roomId) => {
             socketRef.current.disconnect();
         };
     }, []);
-
-    //sends a message to the server that forwards it to all the users in the same room
-    // const sendMessage = (messageBody) => {
-    //     // let addSpaces = messageBody.replaceAll('\n','\s');
-    //     // console.log(addSpaces)
-    //     // console.log(messageBody)
-    //     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT,{
-    //         body: messageBody,
-    //         senderId: socketRef.current.id,
-    //     });
-    // };
     
     return { feedMessages };
 };

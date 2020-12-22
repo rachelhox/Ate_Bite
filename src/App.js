@@ -62,6 +62,8 @@ export default function App() {
           <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
           <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
           <PrivateRoute path="/chatroom/:roomcode/:userId" component={ChatRoom} />
+          <PrivateRoute path="/livefeed/:roomcode/:userId" component={LiveFeed} />
+          <PrivateRoute path="/voting/:roomcode/:userId" component={Voting} />
         </Switch>
       </Router>
     );

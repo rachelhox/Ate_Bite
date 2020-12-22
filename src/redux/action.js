@@ -59,7 +59,7 @@ export function logoutNowThunk() {
     dispatch(logoutSuccessActionCreator());
   };
 }
-
+// not using FB login atm, left in here in case we wanna use it in the future
 export function loginFacebookThunk(accessToken) {
   return (dispatch) => {
     console.log(accessToken);

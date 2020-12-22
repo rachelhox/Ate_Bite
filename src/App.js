@@ -15,7 +15,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import HomePage from "./pages/index";
 import SignUpPage from "./pages/sign-up";
-import MapPage from "./pages/map";
+import ChatRoom from "./pages/chatroom";
+import LiveFeed from "./pages/livefeed";
+import Voting from "./pages/voting";
 import DashboardPage from "./pages/dashboard"
 import RoomPage from "./pages/room";
 import { connect } from "react-redux";
@@ -57,6 +59,10 @@ export default function App() {
           <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
           <Route path="/room/random/:roomcode/:userId" component={RoomPage} />
           <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
+          
+          <Route path="/chatroom" component={ChatRoom} />
+          <Route path="/livefeed" component={LiveFeed} />
+          <Route path="/voting" component={Voting} />
         </Switch>
       </Router>
     );

@@ -1,14 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
+import axios from "axios";
 
 // for socket
 const MARKER = 'marker';
+const NEW_FEED_MARKER_EVENT = 'newFeedMarkerEvent';
 const ENDPOINT = process.env.REACT_APP_SERVER_URL; 
 
 const useMarker = (roomcode) => {
     const [markers, setMarkers] = useState([]);
+    const [first, setFirst] = useState(false);
     const socketRef = useRef();
     useEffect(() => {
+        // axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
+        //     console.log(data.data);
+        //     if (data.length > 0) {
+        //         setFirst(true);
+        //     }
+        //     if (first === true) {
+        //         setMarkers(data.data);
+        //     }
+        // })
         socketRef.current = socketIOClient(ENDPOINT, {
             query: { roomcode },
             transports: ['websocket']
@@ -16,7 +28,7 @@ const useMarker = (roomcode) => {
 
         socketRef.current.on(MARKER, data => {
             // console.log(data);
-            setMarkers(markers.concat(data));
+            setMarkers(data);
         })
 
         return () => {
@@ -26,9 +38,16 @@ const useMarker = (roomcode) => {
     }, [])
 
     const emitMarker = (event, userId) => {
+        // for adding marker on map
         socketRef.current.emit(MARKER, {
             userId: userId,
+            roomcode: roomcode,
             location: event.latLng
+        });
+        // for adding an event on livefeed
+        socketRef.current.emit(NEW_FEED_MARKER_EVENT, {
+            userId: userId,
+            roomcode: roomcode,
         });
     }
     

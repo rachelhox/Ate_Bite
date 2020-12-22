@@ -1,3 +1,4 @@
-import NavBar from "./navbar";
+// import NavBar from "../screens/room/navbar";
+import Profile from "./profile";
 
-export { NavBar };
+export { Profile };

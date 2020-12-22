@@ -18,6 +18,7 @@ import SignUpPage from "./pages/sign-up";
 import ChatRoom from "./pages/chatroom";
 import LiveFeed from "./pages/livefeed";
 import Voting from "./pages/voting";
+import MapPage from "./pages/map";
 import DashboardPage from "./pages/dashboard"
 import RoomPage from "./pages/room";
 import { connect } from "react-redux";
@@ -59,7 +60,9 @@ export default function App() {
           <Route path="/chatroom" component={ChatRoom} />
           <Route path="/livefeed" component={LiveFeed} />
           <Route path="/voting" component={Voting} />
+          <Route path="/map" component={MapPage} />
           <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
+          <Route path="/room/random/:roomcode/:userId" component={RoomPage} />
           <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
           <PrivateRoute path="/chatroom/:roomcode/:userId" component={ChatRoom} />
           <PrivateRoute path="/livefeed/:roomcode/:userId" component={LiveFeed} />

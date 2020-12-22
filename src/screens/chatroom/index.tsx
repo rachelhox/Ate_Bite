@@ -2,19 +2,21 @@ import React from "react";
 // import Head from "next/head";
 // import { NavBar } from "@components";
 import { ChatroomCSS } from "./styles";
-import useChat from './hooks/useChat'
+import useChat from './hooks/useChat';
 
-const Chat = (props) => {
+const Chat = () => {
   
-    // const { roomId } = 'test'; //getting roomID from URL
-    const roomId = 'test'
-    const { messages, sendMessage } = useChat(roomId); //creates a websocket and manages messaging
+    const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+    const roomcode = gettingParams[gettingParams.length-2]
+    // console.log(roomcode)
+
+    const { messages, sendMessage } = useChat(roomcode); //creates a websocket and manages messaging
     const [newMessage, setNewMessage] = React.useState(''); //setting the messages to be sent 
   
     const handleNewMessageChange = (event) => {
       setNewMessage(event.target.value);
     };
-  
+
     const handleSendMessage = () => {
       sendMessage(newMessage);
       setNewMessage('');
@@ -23,7 +25,7 @@ const Chat = (props) => {
     return(
       <ChatroomCSS>
       <div className='chatContainer'>
-        <h1 className='roomName'>Room: {roomId}</h1>
+        <h1 className='roomName'>Room: {roomcode}</h1>
         <div className='messagesContainer'>
           <ol className='messagesList'>
             <div className='messagesPosition'>
@@ -33,7 +35,10 @@ const Chat = (props) => {
                 className={`messageItem ${
                   message.ownedByCurrentUser ? 'myMessage' : 'receivedMessage'
                 }`}>
-                  {message.body}
+                  <h2>{message.username}</h2>
+                  <h3>{message.time}</h3>
+
+                  {message.message}
                 </li>
             ))}
             </div>

@@ -6,14 +6,15 @@ import useFeed from './hooks/useFeed'
 
 const LiveFeed = (props) => {
   
-    // const { roomId } = 'test'; //getting roomID from URL
-    const roomId = 'test'
-    const { feedMessages } = useFeed(roomId); 
+    const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+    const roomcode = gettingParams[gettingParams.length-2]
+    
+    const { feedMessages } = useFeed(roomcode); 
   
     return(
       // <LiveFeedCSS>
       <div className='LivefeedContainer'>
-        <h1 className='roomName'>Livefeed: {roomId}</h1>
+        <h1 className='roomName'>Livefeed: {roomcode}</h1>
         <div className='feedContainer'>
           <ol className='feedList'>
             <div className='feedPosition'>
@@ -21,7 +22,7 @@ const LiveFeed = (props) => {
               <li
                 key={i}
                 className={`feedItem ${feed}`}>
-                  {feed.body}
+                  {feed.body}{feed.time}
                 </li>
             ))}
             </div>

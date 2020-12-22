@@ -54,11 +54,8 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/sign-up" component={SignUpPage} />
-          {/* <PrivateRoute path="/map/:roomcode/:userId" component={MapPage} /> */}
-          <Route path="/map/random/:roomcode/:userId" component={MapPage} />
-          {/* <Route path="/map" component={MapPage} /> */}
           <PrivateRoute path="/dashboard/:userId" component={DashboardPage} />
-          <Route path="/room/:roomcode/:userId/random" component={RoomPage} />
+          <Route path="/room/random/:roomcode/:userId" component={RoomPage} />
           <PrivateRoute path="/room/:roomcode/:userId" component={RoomPage} />
         </Switch>
       </Router>

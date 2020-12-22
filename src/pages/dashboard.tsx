@@ -1,12 +1,10 @@
 import React from "react";
-import Hello from "../screens/dashboard";
-import { NavBar } from "../components";
+import Dashboard from "../screens/dashboard";
 
 const DashboardPage = () => {
   return (
     <>
-      {/* <NavBar /> */}
-      <Hello />
+      <Dashboard />
     </>
   );
 };

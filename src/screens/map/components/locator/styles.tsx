@@ -5,7 +5,7 @@ export const LocatorCSS = styled.div`
   top: 15px;
   left: 100px;
   img {
-      width: 100px;
-  };
+    width: 5rem;
+  }
   cursor: pointer;
-`
+`;

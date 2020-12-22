@@ -111,7 +111,7 @@ const ProfileBtn = (props: any) => {
       .get(`${process.env.REACT_APP_SERVER_URL}/getProfile/${userId}`)
       .then((data) => {
         let x = data.data;
-        console.log(x);
+        // console.log(x);
         if (x.length > 0) {
           setFirst(true);
         }

@@ -14,13 +14,13 @@ const useMarker = (roomcode) => {
     useEffect(() => {
         // get markers previously added to the map
         axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
-            console.log(data.data);
+            // console.log(data.data);
             if (data.data.length > 0) {
-                console.log('true');
+                // console.log('true');
                 setFirst(true);
             }
             if (first === true) {
-                console.log('markers set');
+                // console.log('markers set');
                 setMarkers(data.data);
             }
         })

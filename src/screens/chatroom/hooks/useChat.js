@@ -8,9 +8,14 @@ const NEW_CHAT_MESSAGE_EVENT= 'newChatMessage'; //name of the event
 const NEW_FEED_MESSAGE_EVENT= 'newFeedMessage';
 const SERVER_URL='http://localhost:4000'
 
-const users_id = window.localStorage.getItem('userId')
+// const users_id = window.localStorage.getItem('userId')
 // console.log('original users ID:' + users_id)
 // console.log(typeof(users_id))
+
+// get data from url
+const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+// get user id
+const users_id = gettingParams[gettingParams.length-1];
 
 const UseChat = (roomcode) => {
     
@@ -33,14 +38,14 @@ const UseChat = (roomcode) => {
                 let incomingInfo ={...response.data[i],
                     ownedByCurrentUser:response.data[i].users_id == users_id,
                 }
-                console.log(incomingInfo)
+                // console.log(incomingInfo)
                 setMessages((messages)=> [...messages, incomingInfo]);
               }
         })
 
         //listens for incoming messages
         socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message)=>{ 
-             console.log(message)
+             console.log(message.users_id)
             //trying to get the relative time display working, but it isn't required and isn't working so will skip for now
             //  let relativeTime = moment(message.time, 'DD/MM/YY  h:mma').fromNow()
             //  console.log(relativeTime)

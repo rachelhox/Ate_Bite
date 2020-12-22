@@ -7,8 +7,9 @@ export const ChatroomCSS = styled.div`
   .chatContainer {
     // position: fixed;
     margin: 1rem;
-    height: 40rem;
-    width: 30rem;
+    height: 35rem;
+    width: 23rem;
+    overflow: scroll;
   }
   .messagesContainer{
     min-height: 25rem;

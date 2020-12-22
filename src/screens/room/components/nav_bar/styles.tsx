@@ -46,4 +46,9 @@ export const RoomNavCSS = styled.div`
     max-height: 50vh;
     overflow: scroll;
   }
+  .whole {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+  }
 `;

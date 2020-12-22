@@ -25,7 +25,7 @@ const Chat = () => {
     return(
       <ChatroomCSS>
       <div className='chatContainer'>
-        <h1 className='roomName'>Room: {roomcode}</h1>
+        {/* <h1 className='roomName'>Room: {roomcode}</h1> */}
         <div className='messagesContainer'>
           <ol className='messagesList'>
             <div className='messagesPosition'>
@@ -44,6 +44,7 @@ const Chat = () => {
             </div>
           </ol>
         </div>
+        </div>
           <textarea
             value={newMessage}
             onChange={handleNewMessageChange}
@@ -53,7 +54,7 @@ const Chat = () => {
           <button onClick={handleSendMessage} className='sendMessageButton'>
             Send
           </button>
-      </div>
+      
      </ChatroomCSS>
     );
   };

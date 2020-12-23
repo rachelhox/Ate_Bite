@@ -73,13 +73,13 @@ export const ChatroomCSS = styled.div`
   .myMessage {
     align-items: flex-end;
     flex-direction: column;
-    white-space: pre;
+    white-space: pre-wrap;
     width: 15rem;
   }
   .receivedMessage {
     justify-content: flex-start;
     flex-direction: column;
-    white-space: pre;
+    white-space: pre-wrap;
     width: 15rem;
   }
   .sendMessageButton {

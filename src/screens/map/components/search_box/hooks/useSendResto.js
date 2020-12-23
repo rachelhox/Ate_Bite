@@ -29,7 +29,7 @@ const useSendResto = (roomcode, userId) => {
     const emitResto = (selectedCenter) => {
         socketRef.current.emit(NEW_VOTE_MAP_EVENT, {
             resto: selectedCenter.name,
-            rooms_id: roomcode, // ????
+            roomcode: roomcode,
             senderId: userId,
         });
         // for adding an event on livefeed

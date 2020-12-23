@@ -8,8 +8,8 @@ import Box from "@material-ui/core/Box";
 import { MyMap } from "../../../map/components";
 import { RoomHome } from "./home_room";
 import { RoomNavCSS } from "./styles";
-import Chat from "../../../chatroom";
-import LiveFeed from "../../../livefeed";
+// import Chat from "../../../chatroom";
+// import LiveFeed from "../../../livefeed";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,8 +58,8 @@ export const NavBar = (props) => {
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <div className="whole">      
-      <Chat />
+      {/* <div className="whole">       */}
+      {/* <Chat /> */}
       <TabPanel className="homeroom" value={value} index={0}>
         {/* Rachel's Home component: */}
         <h3>Member List</h3>
@@ -74,8 +74,8 @@ export const NavBar = (props) => {
         {/* Arran's voting component:
         <Voting /> */}
       </TabPanel>
-      <LiveFeed />
-      </div>
+      {/* <LiveFeed /> */}
+      {/* </div> */}
     </RoomNavCSS>
   );
 };

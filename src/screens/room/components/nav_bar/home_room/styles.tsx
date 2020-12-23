@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const RoomHomeCSS = styled.div`
   color: antiquewhite;
-  height: 80vh;
+  height: 70vh;
   overflow: scroll;
   width: 100%;
   //   width: fit
@@ -18,5 +18,4 @@ export const MemberListCSS = styled.div`
   h3 {
     margin-bottom: 1rem;
   }
-
 `;

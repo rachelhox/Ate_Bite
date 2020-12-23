@@ -49,13 +49,14 @@ export const RoomNavCSS = styled.div`
   .whole {
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    // width: 100vw;
+    margin: auto;
   }
   .homeroom {
-    width: 45vw;
+    width: 100%;
+    height: 80vh;
   }
   .MuiAppBar-root {
     margin: auto;
-    width: 50%;
   }
 `;

@@ -38,6 +38,8 @@ export const HomeJoin = () => {
           if (res.status === 200) {
             toast.success("Join Room Successfully");
             history.push(`/room/random/${inputs.roomcode}/${res.data.userId}`);
+            localStorage.setItem("userId", `${res.data.userId}`);
+            localStorage.setItem("roomcode", `${inputs.roomcode}`);
           }
         })
         .catch((err) => {

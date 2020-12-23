@@ -83,7 +83,10 @@ const Voting = (props) => {
                 // console.log(voteOption)
                 return (
                   <li key={"option" + i} className={`voteOptionItem`}>
-                    {voteOption.resto}
+                    <div>
+                      <h5>{voteOption.resto}</h5>
+                      {voteOption.address && <h5>{voteOption.address}</h5>}
+                    </div>
                     <Button
                       disabled={voteOption.userHasVoted ? true : false}
                       onClick={handlenewCountChange.bind(this, voteOption)}

@@ -30,7 +30,9 @@ export const VotingroomCSS = styled.div`
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  .voteCountItem {
+  .voteOptionItem {
+    display: flex;
+    border: 0.1rem solid;
   }
   .votingTable {
     height: 25rem;
@@ -47,10 +49,13 @@ export const VotingroomCSS = styled.div`
   .MuiLinearProgress-colorPrimary {
     background-color: white;
 }
-.MuiLinearProgress-barColorPrimary {
-  background-color: red;
-}
+  .MuiLinearProgress-barColorPrimary {
+    background-color: red;
+  }
   .MuiLinearProgress-root{
     height: 1.2rem;
+  }
+  h5 {
+    margin-bottom: 0rem;
   }
 `;

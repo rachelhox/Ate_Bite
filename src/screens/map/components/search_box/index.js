@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Marker, InfoWindow, StandaloneSearchBox} from "@react-google-maps/api";
 import Button from '@material-ui/core/Button';
 import useSendResto from './hooks/useSendResto';
+import { WindowCSS } from './styles';
 
 export const SearchBox = () => {
 
@@ -83,7 +84,7 @@ export const SearchBox = () => {
                             address: place.address
                         });
                         // console.log('clicked');
-                     }}
+                    }}
                 />))
             }
             {selectedCenter && (
@@ -96,7 +97,8 @@ export const SearchBox = () => {
                         lng: selectedCenter.lng
                     }}
                 >
-                    <div>
+                    <WindowCSS>
+                    <div className="window">
                         <p>{selectedCenter.name}</p>
                         <br />
                         <p>{selectedCenter.address}</p>
@@ -109,6 +111,7 @@ export const SearchBox = () => {
                             </Button>
                         </form>                       
                     </div>
+                    </WindowCSS>
                 </InfoWindow>
             )}
             {/* {places.map((place, i) => 

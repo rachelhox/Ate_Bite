@@ -29,6 +29,7 @@ const useSendResto = (roomcode, userId) => {
     const emitResto = (selectedCenter) => {
         socketRef.current.emit(NEW_VOTE_MAP_EVENT, {
             resto: selectedCenter.name,
+            address: selectedCenter.address,
             roomcode: roomcode,
             senderId: userId,
         });

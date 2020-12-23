@@ -18,7 +18,7 @@ const Voting = (props) => {
   const roomcode = gettingParams[gettingParams.length - 2];
 
   const { votingOption, sendVoteOption } = useVoting(roomcode);
-  console.log(votingOption);
+  // console.log(votingOption);
   const [newVoting, setnewVoting] = React.useState("");
 
   const { addCount, sendCount } = useVoting(roomcode);
@@ -34,7 +34,7 @@ const Voting = (props) => {
 
   const handlenewCountChange = (voteOption, event) => {
     event.preventDefault();
-    console.log(voteOption);
+    // console.log(voteOption);
     sendCount(voteOption);
   };
 

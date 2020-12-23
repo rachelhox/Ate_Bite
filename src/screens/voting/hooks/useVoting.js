@@ -4,8 +4,7 @@ import socketIOClient from "socket.io-client";
 
 const NEW_VOTE_EVENT = "newVotingOption";
 const NEW_COUNT_EVENT = "newCountOption";
-const NEW_FEED_MESSAGE_EVENT = "newFeedvotingOption";
-const SERVER_URL = "http://localhost:4000";
+const NEW_FEED_OPTION_EVENT = "newFeedOptionEvent";
 
 const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
 const users_id = parseInt(gettingParams[gettingParams.length - 1]);
@@ -16,14 +15,14 @@ const UseVoting = (roomcode) => {
   const socketRef = useRef();
 
   useEffect(() => {
-    Axios.post(`${SERVER_URL}/voting/existing`, { roomcode }).then(function (
+    Axios.post(`${process.env.REACT_APP_SERVER_URL}/voting/existing`, { roomcode }).then(function (
       response
     ) {
-      console.log(response.data);
+      // console.log(response.data);
       let incomingInfo = response.data;
       // console.log(incomingInfo[0].vote.userID)
       // console.log(incomingInfo)
-      console.log(users_id);
+      // console.log(users_id);
       let checkUsers = incomingInfo.map((value) => {
         return {
           ...value,
@@ -36,23 +35,20 @@ const UseVoting = (roomcode) => {
 
   useEffect(() => {
     //creates a WebSocket connection
-    socketRef.current = socketIOClient(SERVER_URL, {
+    socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL, {
       query: { roomcode },
       transports: ["websocket"],
     });
 
     socketRef.current.on(NEW_VOTE_EVENT, (data) => {
-      console.log(data);
-      console.log(votingOption);
+      // console.log(data);
+      // console.log(votingOption);
       let spread = [...votingOption, data];
-      console.log(spread);
+      // console.log(spread);
       setVoteOption(spread);
-
-      // socketRef.current.emit(NEW_FEED_MESSAGE_EVENT,{
-      //     body: `${socketRef.current.id} has made a new option to vote on`,
-      //     senderId: socketRef.current.id,
-      // });
     });
+
+
 
     socketRef.current.on(NEW_COUNT_EVENT, (addCount) => {
       //    console.log(count.vote.userID)
@@ -62,25 +58,25 @@ const UseVoting = (roomcode) => {
 
       for (let i = 0; i < voteCount.length; i++) {
         if (users_id == voteCount[i]) {
-          console.log(voteCount[i]);
+          // console.log(voteCount[i]);
           userHasVoted = true;
         }
       }
-      console.log(userHasVoted);
+      // console.log(userHasVoted);
       const incomingCount = {
         ...addCount,
         userHasVoted,
       };
-      console.log(incomingCount);
-      console.log(votingOption);
+      // console.log(incomingCount);
+      // console.log(votingOption);
       let countOption = [...votingOption];
-      console.log(countOption);
+      // console.log(countOption);
       for (let f = 0; f < countOption.length; f++) {
         if (countOption[f].id == incomingCount.id) {
           countOption[f] = incomingCount;
         }
       }
-      console.log(countOption);
+      // console.log(countOption);
       setVoteOption(countOption);
     });
 
@@ -95,10 +91,15 @@ const UseVoting = (roomcode) => {
       resto: votingOption,
       roomcode,
     });
+    // send to feed when user add a new resto to voting
+    socketRef.current.emit(NEW_FEED_OPTION_EVENT,{
+      userId: users_id,
+      roomcode: roomcode,
+    });
   };
 
   const sendCount = (data) => {
-    console.log(data);
+    // console.log(data);
     socketRef.current.emit(NEW_COUNT_EVENT, {
       data,
       users_id,

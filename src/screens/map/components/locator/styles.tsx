@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const LocatorCSS = styled.div`
   position: absolute;
-  top: 15px;
-  left: 100px;
+  top: 1rem;
+  right: 1rem;
   img {
-    width: 5rem;
+    width: 3rem;
+    cursor: pointer;
   }
-  cursor: pointer;
+  
 `;

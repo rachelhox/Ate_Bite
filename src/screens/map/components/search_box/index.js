@@ -1,14 +1,25 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Marker, InfoWindow, StandaloneSearchBox} from "@react-google-maps/api";
 import Button from '@material-ui/core/Button';
+import useSendResto from './hooks/useSendResto';
 
 export const SearchBox = () => {
+
+    // get data from url
+    const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+    // get roomcode
+    const roomcode = gettingParams[gettingParams.length-2];
+    // get user id
+    const userId = gettingParams[gettingParams.length-1];
+
     const [selectedCenter, setSelectedCenter] = useState(null);
 
     const [places, setPlaces] = useState([]);
 
-    const searchBox = useRef();
+    const { emitResto } = useSendResto(roomcode, userId);
 
+    // setting up for google searchbox
+    const searchBox = useRef();
     const onLoad = ref => searchBox.current = ref;
 
     const onPlacesChanged = async () => {
@@ -25,9 +36,11 @@ export const SearchBox = () => {
                 id: i,
             }
         })
-        // console.log(allPlaces);
+        console.log(allPlaces);
         setPlaces(allPlaces);
     };
+
+
 
     return (
         <div>
@@ -90,6 +103,7 @@ export const SearchBox = () => {
                         <form>
                             <Button
                                 variant="contained"
+                                onClick={() => emitResto(selectedCenter)}
                             >
                                 I want this!
                             </Button>

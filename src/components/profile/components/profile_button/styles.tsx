@@ -12,4 +12,12 @@ export const ProfileBtnCSS = styled.div`
     border-radius: 50%;
     display: inline-block;
   }
+  .random-button {
+    height: 5rem;
+    width: 5rem;
+    // background-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: default;
+  }
 `;

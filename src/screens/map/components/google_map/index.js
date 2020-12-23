@@ -4,15 +4,13 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import socketIOClient from "socket.io-client";
 import SearchBox from "../search_box";
 import Locator from "../locator";
+import useMarker from "./hooks/useMarker";
 
-// for socket
-const ENDPOINT = "http://127.0.0.1:4000";
-const socket = socketIOClient(ENDPOINT, {transports: ['websocket']}); 
 
 // constants for setting up the map
 const libraries = ["places"];
 const mapContainerStyle = {
-    width: "50vw",
+    width: "45vw",
     height: "80vh",
 }
 const center = {
@@ -25,78 +23,43 @@ const options = {
 }
 
 export const MyMap = () => {
+
+    // get data from url
+    const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+    // get roomcode
+    const roomcode = gettingParams[gettingParams.length-2];
+    // get user id
+    const userId = gettingParams[gettingParams.length-1];
+
+
+    // for socket
+    const { markers, emitMarker } = useMarker(roomcode);
+    
+    // when click on map -> add marker
+    const handleClick = (event) => {
+        emitMarker(event, userId);
+    }
+
+
+    // for google map set up
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API,
         libraries,
     });
-
-    // markers invoked by user click event
-    const [markers, setMarkers] = useState([]);
-
-
-    const handleClick = (event) => {
-        // we have to emit user id from here too so when rendering markers we can retrieve
-        // the user icon for markers
-        // this should be the data sent to backend
-        // {
-        //     lat: event.latLng.lat(),
-        //     lng: event.latLng.lng(),
-        //     userId: userId,
-        // }
-
-        // when render (?)
-        // {markers.map((marker, i) => 
-        // (<Marker
-        //     key={i}
-        //     position={{ lat: marker.lat, lng: marker.lng }}
-        //     icon={{
-        //     url: "icon link", (?)
-        //     scaledSize: new window.google.maps.Size(30, 30),
-        //     origin: new window.google.maps.Point(0, 0),
-        //     anchor: new window.google.maps.Point(15, 15) 
-        //     }}
-        // />))
-        // }
-        socket.emit('marker', event.latLng);
-    }
-
-    const onMapClick = useCallback(handleClick, []);
-
-    // socket
-    socket.on('marker', data => {
-        // console.log(data);
-        setMarkers(markers.concat(data));
-    })
-
     const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
     }, []);
+
+    // react google map api in-built props for clicking and adding markers functionality
+    const onMapClick = useCallback(handleClick, []);
+
 
     // passed to locator
     const panTo = useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(14);
     }, []);
-
-    // const getCurrentLocation = async () => {
-    //     await navigator.geolocation.getCurrentPosition(
-    //         (position) => {
-    //             let currentLocation = {
-    //                 lat: position.coords.latitude,
-    //                 lng: position.coords.longitude,
-    //             }
-    //             console.log('hi');
-    //             return currentLocation;
-    //         },
-    //         () => null
-    //         );
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getCurrentLocation();
-    // },[])
 
     if (loadError) return "Error loading map";
     if (!isLoaded) return "Loading map";
@@ -116,9 +79,9 @@ export const MyMap = () => {
             {markers.map((marker, i) => 
                 (<Marker
                     key={i}
-                    position={{ lat: marker.lat, lng: marker.lng }}
+                    position={{ lat: marker.location.lat, lng: marker.location.lng }}
                     icon={{
-                        url: "https://robohash.org/python",
+                        url: marker.propic,
                         scaledSize: new window.google.maps.Size(30, 30),
                         origin: new window.google.maps.Point(0, 0),
                         anchor: new window.google.maps.Point(15, 15) 

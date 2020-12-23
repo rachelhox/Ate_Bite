@@ -46,4 +46,17 @@ export const RoomNavCSS = styled.div`
     max-height: 50vh;
     overflow: scroll;
   }
+  .whole {
+    display: flex;
+    flex-direction: row;
+    // width: 100vw;
+    margin: auto;
+  }
+  .homeroom {
+    width: 100%;
+    height: 80vh;
+  }
+  .MuiAppBar-root {
+    margin: auto;
+  }
 `;

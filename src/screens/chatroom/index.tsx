@@ -93,6 +93,7 @@ const Chat = () => {
               </button> */}
             <Button
                 variant="contained"
+                disabled ={!newMessage}
                 color="primary"
                 // classes={{ root: classesBtn.root }}
                 onClick={handleSendMessage}

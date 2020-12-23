@@ -54,4 +54,8 @@ export const RoomNavCSS = styled.div`
   .homeroom {
     width: 45vw;
   }
+  .MuiAppBar-root {
+    margin: auto;
+    width: 50%;
+  }
 `;

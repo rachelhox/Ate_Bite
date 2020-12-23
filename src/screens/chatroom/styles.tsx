@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const ChatroomCSS = styled.div`
-  height: 100vh;
-  width: 50%;
 
   .chatroom {
     width: 23rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 0.5rem;
   }
   .chatContainer {
     // position: fixed;

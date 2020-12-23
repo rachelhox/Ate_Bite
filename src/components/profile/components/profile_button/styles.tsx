@@ -20,4 +20,10 @@ export const ProfileBtnCSS = styled.div`
     display: inline-block;
     cursor: default;
   }
+  h3 {
+    margin: 0 0 1rem 0;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: #3f51b5;
+  }
 `;

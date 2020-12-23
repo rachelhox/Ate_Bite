@@ -37,6 +37,10 @@ const useStylesForm = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    margin: `0 0 0 0`,
+    fontFamily: `sans-serif`,
+    textTransform: `uppercase`,
+    color: `#3f51b5`,
   },
 });
 // styling for input
@@ -152,10 +156,14 @@ const ProfileBtn = (props: any) => {
 
   const handleExit = () => {
     history.push("/");
-  }
+  };
 
   const handleClickSignUp = () => {
     history.push("/sign-up");
+  };
+
+  const handleDashboard = () => {
+    history.push(`/dashboard/${userId}`);
   };
 
   // for styling paper
@@ -175,111 +183,122 @@ const ProfileBtn = (props: any) => {
 
   return (
     <ProfileBtnCSS>
-      {random === false ?
-      <div>
-      <Button
-        aria-describedby={id}
-        // variant="contained"
-        // color="primary"
-        className="button"
-        onClick={handleClick}
-        classes={{ root: propicColor.root }}
-      >
-        <img
-          src={profileInfo && profileInfo[0] && profileInfo[0].propic}
-          alt=""
-        />
-      </Button>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: -10,
-          horizontal: "right",
-        }}
-        classes={{ paper: classesPaper.paper }}
-      >
-        <ClickAwayListener onClickAway={handleClose}>
-          <FormControl classes={{ root: classesForm.root }}>
-            <Button
-              type="submit"
-              variant="outlined"
-              color="primary"
-              classes={{ root: classesBtn.root }}
-              onClick={handleLogOut}
-            >
-              sign out
-            </Button>
-          </FormControl>
-        </ClickAwayListener>
-      </Popover>
-      </div>
-      :
-      // <div>
-      //   <Button
-      //   aria-describedby={id}
-      //   // variant="contained"
-      //   // color="primary"
-      //   className="random-button"
-      //   classes={{ root: propicColor.root }}
-      // >
-      //   <img
-      //     src={profileInfo && profileInfo[0] && profileInfo[0].propic}
-      //     alt=""
-      //   />
-      // </Button>
-      // </div>
-      <div>
-      <Button
-        aria-describedby={id}
-        // variant="contained"
-        // color="primary"
-        className="button"
-        onClick={handleClick}
-        classes={{ root: propicColor.root }}
-      >
-        <img
-          src={profileInfo && profileInfo[0] && profileInfo[0].propic}
-          alt=""
-        />
-      </Button>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: -10,
-          horizontal: "right",
-        }}
-        classes={{ paper: classesPaper.paper }}
-      >
-        <ClickAwayListener onClickAway={handleClose}>
-          <FormControl classes={{ root: classesForm.root }}>
-            <Button
-              type="submit"
-              variant="outlined"
-              color="primary"
-              classes={{ root: classesBtn.root }}
-              onClick={handleExit}
-            >
-              exit
-            </Button>
-          </FormControl>
-        </ClickAwayListener>
-      </Popover>
-      </div>
-      }
+      {random === false ? (
+        <div>
+          <Button
+            aria-describedby={id}
+            // variant="contained"
+            // color="primary"
+            className="button"
+            onClick={handleClick}
+            classes={{ root: propicColor.root }}
+          >
+            <img
+              src={profileInfo && profileInfo[0] && profileInfo[0].propic}
+              alt=""
+            />
+          </Button>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: -10,
+              horizontal: "right",
+            }}
+            classes={{ paper: classesPaper.paper }}
+          >
+            <ClickAwayListener onClickAway={handleClose}>
+              <FormControl classes={{ root: classesForm.root }}>
+                <h4>
+                  {profileInfo && profileInfo[0] && profileInfo[0].username}
+                </h4>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  classes={{ root: classesBtn.root }}
+                  onClick={handleDashboard}
+                >
+                  Dashboard
+                </Button>
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  color="primary"
+                  classes={{ root: classesBtn.root }}
+                  onClick={handleLogOut}
+                >
+                  sign out
+                </Button>
+              </FormControl>
+            </ClickAwayListener>
+          </Popover>
+        </div>
+      ) : (
+        // <div>
+        //   <Button
+        //   aria-describedby={id}
+        //   // variant="contained"
+        //   // color="primary"
+        //   className="random-button"
+        //   classes={{ root: propicColor.root }}
+        // >
+        //   <img
+        //     src={profileInfo && profileInfo[0] && profileInfo[0].propic}
+        //     alt=""
+        //   />
+        // </Button>
+        // </div>
+        <div>
+          <Button
+            aria-describedby={id}
+            // variant="contained"
+            // color="primary"
+            className="button"
+            onClick={handleClick}
+            classes={{ root: propicColor.root }}
+          >
+            <img
+              src={profileInfo && profileInfo[0] && profileInfo[0].propic}
+              alt=""
+            />
+          </Button>
+          <Popover
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: -10,
+              horizontal: "right",
+            }}
+            classes={{ paper: classesPaper.paper }}
+          >
+            <ClickAwayListener onClickAway={handleClose}>
+              <FormControl classes={{ root: classesForm.root }}>
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  color="primary"
+                  classes={{ root: classesBtn.root }}
+                  onClick={handleExit}
+                >
+                  exit
+                </Button>
+              </FormControl>
+            </ClickAwayListener>
+          </Popover>
+        </div>
+      )}
     </ProfileBtnCSS>
   );
 };

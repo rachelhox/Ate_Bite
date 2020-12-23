@@ -31,21 +31,6 @@ const UseVoting = (roomcode) => {
                     } 
                 })
                 setVoteOption(checkUsers)
-                // console.log(checkUsers)
-                // let checkUsers = {}
-                // for (let i = 0; i < incomingInfo.length; i++){
-                //     checkUsers = {
-                //             ...incomingInfo[i],
-                //             userHasVoted: incomingInfo[i].vote.userID.includes(users_id)
-                //         }
-                //        console.log(checkUsers)
-                //         // let spread = [...votingOption, checkUsers]
-                //         // console.log(spread)
-                //         // console.log(votingOption)
-                //         // setVoteOption(spread);
-                    
-                //     // console.log(checkUsers)
-                // }
         })
     },[]);
 

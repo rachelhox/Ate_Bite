@@ -150,6 +150,10 @@ const ProfileBtn = (props: any) => {
     props.logoutRedux();
   };
 
+  const handleExit = () => {
+    history.push("/");
+  }
+
   const handleClickSignUp = () => {
     history.push("/sign-up");
   };
@@ -203,44 +207,6 @@ const ProfileBtn = (props: any) => {
       >
         <ClickAwayListener onClickAway={handleClose}>
           <FormControl classes={{ root: classesForm.root }}>
-            {/* <TextField
-              id="outlined-name"
-              label="Email Address"
-              name="email"
-              placeholder="Enter email address"
-              value={inputs.email}
-              onChange={handleChange}
-              variant="outlined"
-              classes={{ root: classesInput.root }}
-            />
-            <TextField
-              id="outlined-name"
-              label="Password"
-              name="password"
-              placeholder="Enter password"
-              value={inputs.password}
-              onChange={handleChange}
-              variant="outlined"
-              classes={{ root: classesInput.root }}
-            />
-            <Button
-              type="submit"
-              // disabled={!canSubmit}
-              variant="outlined"
-              color="primary"
-              classes={{ root: classesBtn.root }}
-              onClick={handleSubmit}
-            >
-              sign in
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              classes={{ root: classesBtn.root }}
-              onClick={handleClickSignUp}
-            >
-              sign up
-            </Button> */}
             <Button
               type="submit"
               variant="outlined"
@@ -255,12 +221,27 @@ const ProfileBtn = (props: any) => {
       </Popover>
       </div>
       :
+      // <div>
+      //   <Button
+      //   aria-describedby={id}
+      //   // variant="contained"
+      //   // color="primary"
+      //   className="random-button"
+      //   classes={{ root: propicColor.root }}
+      // >
+      //   <img
+      //     src={profileInfo && profileInfo[0] && profileInfo[0].propic}
+      //     alt=""
+      //   />
+      // </Button>
+      // </div>
       <div>
-        <Button
+      <Button
         aria-describedby={id}
         // variant="contained"
         // color="primary"
-        className="random-button"
+        className="button"
+        onClick={handleClick}
         classes={{ root: propicColor.root }}
       >
         <img
@@ -268,9 +249,37 @@ const ProfileBtn = (props: any) => {
           alt=""
         />
       </Button>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: -10,
+          horizontal: "right",
+        }}
+        classes={{ paper: classesPaper.paper }}
+      >
+        <ClickAwayListener onClickAway={handleClose}>
+          <FormControl classes={{ root: classesForm.root }}>
+            <Button
+              type="submit"
+              variant="outlined"
+              color="primary"
+              classes={{ root: classesBtn.root }}
+              onClick={handleExit}
+            >
+              exit
+            </Button>
+          </FormControl>
+        </ClickAwayListener>
+      </Popover>
       </div>
       }
-      {/* <Route path="/sign-up" component={SignUp} /> */}
     </ProfileBtnCSS>
   );
 };

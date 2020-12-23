@@ -24,6 +24,10 @@ const useMarker = (roomcode) => {
                 setMarkers(data.data);
             }
         })
+
+    }, [first])
+
+    useEffect(() => {
         socketRef.current = socketIOClient(ENDPOINT, {
             query: { roomcode },
             transports: ['websocket']
@@ -32,13 +36,13 @@ const useMarker = (roomcode) => {
         socketRef.current.on(MARKER, data => {
             // console.log(data);
             setMarkers(data);
+            console.log(markers);
         })
 
         return () => {
             socketRef.current.disconnect();
-        }
-
-    }, [first])
+        }        
+    }, [markers])
 
     const emitMarker = (event, userId) => {
         // for adding marker on map

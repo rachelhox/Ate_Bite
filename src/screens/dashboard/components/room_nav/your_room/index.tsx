@@ -38,6 +38,7 @@ export const YourRooms = () => {
               <Button
                 onClick={() => {
                   history.push(`/room/${x.roomcode}/${user.userId}`);
+                  localStorage.setItem("roomcode", `${x.roomcode}`);
                 }}
                 key={i}
               >

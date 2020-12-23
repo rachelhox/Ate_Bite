@@ -14,7 +14,8 @@ const SERVER_URL = "http://localhost:4000";
 // get data from url
 const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
 // get user id
-const users_id = gettingParams[gettingParams.length - 1];
+// const users_id = gettingParams[gettingParams.length - 1];
+const users_id = localStorage.getItem("userId");
 
 const UseChat = (roomcode) => {
   const [messages, setMessages] = useState([]); //sent and received messages
@@ -27,15 +28,7 @@ const UseChat = (roomcode) => {
   };
 
   useEffect(() => {
-    //creates a WebSocket connection
-    socketRef.current = socketIOClient(SERVER_URL, {
-      query: { roomcode },
-      transports: ["websocket"],
-    });
-
-    Axios.post(`${SERVER_URL}/chatroom/existing`, { roomcode }).then(function (
-      response
-    ) {
+    Axios.post(`${SERVER_URL}/chatroom/existing`, { roomcode }).then(function (response) {
       // console.log(response.data)
       // for (let i = 0; i < response.data.length; i++) {
 
@@ -46,11 +39,22 @@ const UseChat = (roomcode) => {
       //     setMessages((messages)=> [...messages, incomingInfo]);
       //   }
       setMessages([...response.data]);
+      console.log(messages);
+    });
+  }, []);
+
+
+  useEffect(() => {
+    //creates a WebSocket connection
+    socketRef.current = socketIOClient(SERVER_URL, {
+      query: { roomcode },
+      transports: ["websocket"],
     });
 
     //listens for incoming messages
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
-      console.log(message.users_id);
+      // console.log(messages);
+      // console.log(message);
       //trying to get the relative time display working, but it isn't required and isn't working so will skip for now
       //  let relativeTime = moment(message.time, 'DD/MM/YY  h:mma').fromNow()
       //  console.log(relativeTime)
@@ -58,15 +62,16 @@ const UseChat = (roomcode) => {
         ...message,
         ownedByCurrentUser: message.users_id === users_id,
       };
-      setMessages((messages) => [...messages, incomingMessage]);
+      setMessages((messages) => messages.concat(message));
 
+      // arran's
       //actually gonna get rid of this for messages, but will keep it here for now to remember to put it into other things later
-      socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
-        body: `${message.username} has sent a message`,
-        username: message.username,
-        propic: message.propic,
-        piccolour: message.piccolour,
-      });
+      // socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
+      //   body: `${message.username} has sent a message`,
+      //   username: message.username,
+      //   propic: message.propic,
+      //   piccolour: message.piccolour,
+      // });
       // console.log(incomingMessage)
     });
 
@@ -74,7 +79,7 @@ const UseChat = (roomcode) => {
     return () => {
       socketRef.current.disconnect();
     };
-  }, []);
+  }, [messages]);
 
   // for smooth scroll of chat messages and scrolling to the bottom automatically
   useEffect(() => {
@@ -91,6 +96,12 @@ const UseChat = (roomcode) => {
       roomcode,
       users_id,
     });
+    socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
+      userId: users_id,
+      roomcode: roomcode,
+    });
+    
+    
   };
 
   return { messages, sendMessage, messagesEndRef };

@@ -1,53 +1,56 @@
 import styled from "styled-components";
 
-export const ChatroomCSS = styled.div`
+export const VotingroomCSS = styled.div`
   height: 100vh;
   width: 50%;
 
-  .liveFeedContainer {
-    // position: fixed;
+  .votingContainer {
+    display: flex;
+    flex-direction: row;
     margin: 1rem;
     height: 40rem;
-    width: 30rem;
+    width: 45rem;
   }
-  .messagesContainer{
-    min-height: 25rem;
+  .voteOptionsContainer {
+    width: 30rem;
+    padding-right: 5rem;
     overflow: auto;
-    border: 1px solid black;
-    border-radius: 1rem 1rem 0rem 0rem;
-}
-.messagesList{
+  }
+  .voteOptionsList {
     display: flex;
     flex-direction: column;
     list-style-type: none;
     padding: 0;
+  }
+  .voteTableList {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .voteCountItem {
+  }
+  .votingTable {
+    height: 25rem;
+    width: 30rem;
+    border: 1px solid black;
+    overflow: auto;
+  }
+  .enableButton {
+    color: green;
+  }
+  .disableButton {
+    color: grey;
+  }
+  .MuiLinearProgress-colorPrimary {
+    background-color: white;
 }
-.newMessageInputField{
-    height: 6.25rem;
-    width: 25rem;
-    font-size: 1.25rem;
-    padding: 0.4rem;
-    border-radius: 0rem 0rem 0rem 1rem;
+.MuiLinearProgress-barColorPrimary {
+  background-color: red;
 }
-.messageItem{
-  display: flex;
-  padding: 0.5rem;
-  margin: 0.4rem;
-  border-radius: 0.5rem;
-  color: white;
-}
-.myMessage{
-    justify-content: flex-end;
-    background-color: rgb(49 162 76);
-    white-space: pre;
-}
-.receivedMessage{
-  justify-content: flex-start;
-  background-color: rgb(123 123 123);
-  white-space: pre;
-}
-.sendMessageButton{
-  height: 6.25rem;
-  width: 5rem;
-}
+  .MuiLinearProgress-root{
+    height: 1.2rem;
+  }
 `;

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { LocatorCSS } from "./styles";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import compass from "../../../../static/icons/compass.svg";
+// import compass from "../../../../static/icons/compass.svg";
+import position from "../../../../static/icons/position.svg";
 
 export const Locator = ( {panTo} ) => {    
     const handleClick = () => {
@@ -20,7 +21,7 @@ export const Locator = ( {panTo} ) => {
     return (
         <LocatorCSS>
         <button>
-            <img src={compass} alt="locate me!" onClick={handleClick}></img>
+            <img src={position} alt="locate me!" onClick={handleClick}></img>
         </button>
         </LocatorCSS>
     )

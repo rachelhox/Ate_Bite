@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const RoomCSS = styled.div`
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding-top: 1rem;
   img {
@@ -14,6 +14,7 @@ export const RoomCSS = styled.div`
     position: absolute;
     width 5rem;
     left: 2rem;
+    top: 1rem;
   }
  // background: rgb(240, 53, 53);
   background: linear-gradient(

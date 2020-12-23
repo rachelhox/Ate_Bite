@@ -50,6 +50,7 @@ const GlobalCSS = createGlobalStyle`
     max-width: 100%;
     height: auto;
   }
+
 `;
 
 export default GlobalCSS;

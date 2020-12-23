@@ -32,15 +32,16 @@ const UseChat = (roomcode) => {
 
         Axios.post(`${SERVER_URL}/chatroom/existing`, { roomcode })
         .then(function (response){
-            // console.log(response.data[0])
-            for (let i = 0; i < response.data.length; i++) {
+            // console.log(response.data)
+            // for (let i = 0; i < response.data.length; i++) {
                 
-                let incomingInfo ={...response.data[i],
-                    ownedByCurrentUser:response.data[i].users_id == users_id,
-                }
-                // console.log(incomingInfo)
-                setMessages((messages)=> [...messages, incomingInfo]);
-              }
+            //     let incomingInfo ={...response.data[i],
+            //         ownedByCurrentUser:response.data[i].users_id == users_id,
+            //     }
+            //     // console.log(incomingInfo)
+            //     setMessages((messages)=> [...messages, incomingInfo]);
+            //   }
+            setMessages([...response.data]);
         })
 
         //listens for incoming messages

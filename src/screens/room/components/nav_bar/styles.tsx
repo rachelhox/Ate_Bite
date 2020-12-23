@@ -51,4 +51,7 @@ export const RoomNavCSS = styled.div`
     flex-direction: row;
     width: 100vw;
   }
+  .homeroom {
+    width: 45vw;
+  }
 `;

@@ -9,6 +9,7 @@ import { MyMap } from "../../../map/components";
 import { RoomHome } from "./home_room";
 import { RoomNavCSS } from "./styles";
 import Chat from "../../../chatroom";
+import LiveFeed from "../../../livefeed";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,6 +74,7 @@ export const NavBar = (props) => {
         {/* Arran's voting component:
         <Voting /> */}
       </TabPanel>
+      <LiveFeed />
       </div>
     </RoomNavCSS>
   );

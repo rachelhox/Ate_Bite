@@ -10,7 +10,7 @@ import useMarker from "./hooks/useMarker";
 // constants for setting up the map
 const libraries = ["places"];
 const mapContainerStyle = {
-    width: "50vw",
+    width: "45vw",
     height: "80vh",
 }
 const center = {

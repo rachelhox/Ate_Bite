@@ -1,7 +1,7 @@
 import React from "react";
 // import Head from "next/head";
 // import { NavBar } from "@components";
-// import { LiveFeedCSS } from "./styles";
+import { LiveFeedCSS } from "./styles";
 import useFeed from './hooks/useFeed'
 
 const LiveFeed = (props) => {
@@ -12,11 +12,11 @@ const LiveFeed = (props) => {
     const { feedMessages } = useFeed(roomcode); 
   
     return(
-      // <LiveFeedCSS>
+      <LiveFeedCSS>
       <div className='LivefeedContainer'>
-        <h1 className='roomName'>Livefeed: {roomcode}</h1>
+        {/* <h1 className='roomName'>Livefeed: {roomcode}</h1> */}
         <div className='feedContainer'>
-          <ol className='feedList'>
+          <ul className='feedList'>
             <div className='feedPosition'>
             {feedMessages.map((feed, i)=>(
               <li
@@ -26,11 +26,11 @@ const LiveFeed = (props) => {
                 </li>
             ))}
             </div>
-          </ol>
+          </ul>
         </div>
       </div>
-    //  </LiveFeedCSS>
-    );
-  };
+    </LiveFeedCSS>
+  );
+};
   
   export default LiveFeed;

@@ -11,7 +11,8 @@ const Chat = () => {
   
     const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
     const roomcode = gettingParams[gettingParams.length-2]
-    // console.log(roomcode)
+    // get user id
+    const users_id = gettingParams[gettingParams.length-1];
 
     const { messages, sendMessage } = useChat(roomcode); //creates a websocket and manages messaging
     const [newMessage, setNewMessage] = React.useState(''); //setting the messages to be sent 
@@ -27,60 +28,71 @@ const Chat = () => {
   
     return(
       <ChatroomCSS>
-      <div className='chatContainer'>
-        {/* <h1 className='roomName'>Room: {roomcode}</h1> */}
-        <div className='messagesContainer'>
-          <ol className='messagesList'>
-            <div className='messagesPosition'>
-            {messages.map((message, i)=>(
-              <div>
-              <li
-                key={i}
-                className={`messageItem ${
-                  message.ownedByCurrentUser ? 'myMessage' : 'receivedMessage'
-                }`}>
-                  <h2 className="chat-text">{message.username}</h2>
-                  <hr className="chat-hr" />
-                  <h3 className="chat-text">{message.message}</h3>
-                  <h5 className="chat-text">{message.time}</h5>
-                  
-                </li>
+        <div className="chatroom">
+          <div className='chatContainer'>
+            {/* <h1 className='roomName'>Room: {roomcode}</h1> */}
+            <div className='messagesContainer'>
+              <ol className='messagesList'>
+                <div className='messagesPosition'>
+                {messages.map((message, i)=>{
+                  return (
+                  (message.users_id == users_id ? 
+                     (<div>
+                      <li
+                        key={i}
+                        className={`messageItem myMessage`}>
+                          <h2 className="chat-text">{message.username}</h2>
+                          <hr className="chat-hr" />
+                          <h3 className="chat-text">{message.message}</h3>
+                          <h5 className="chat-text">{message.time}</h5>                         
+                      </li>
+                    </div>) :
+                    (<div>
+                    <li
+                      key={i}
+                      className={`messageItem receivedMessage`}>
+                        <h2 className="chat-text">{message.username}</h2>
+                        <hr className="chat-hr" />
+                        <h3 className="chat-text">{message.message}</h3>
+                        <h5 className="chat-text">{message.time}</h5>                       
+                    </li>
+                  </div>)            
+                  ))
+                })}
                 </div>
-            ))}
+              </ol>
             </div>
-          </ol>
-        </div>
+          </div>
+            {/* <textarea
+              value={newMessage}
+              onChange={handleNewMessageChange}
+              placeholder='Write message...'
+              className='newMessageInputField'
+            /> */}
+          <div className="chat-bottom">
+            <TextField
+              id="filled-multiline-static"
+              // label="Multiline"
+              multiline
+              rows={4}
+              value={newMessage}
+              placeholder='Write message...'
+              variant="filled"
+              onChange={handleNewMessageChange}
+            />
+              {/* <button onClick={handleSendMessage} className='sendMessageButton'>
+                Send
+              </button> */}
+            <Button
+                variant="contained"
+                color="primary"
+                // classes={{ root: classesBtn.root }}
+                onClick={handleSendMessage}
+              >
+              send
+            </Button>
+          </div>
       </div>
-          {/* <textarea
-            value={newMessage}
-            onChange={handleNewMessageChange}
-            placeholder='Write message...'
-            className='newMessageInputField'
-          /> */}
-      <div className="chat-bottom">
-        <TextField
-          id="filled-multiline-static"
-          // label="Multiline"
-          multiline
-          rows={4}
-          value={newMessage}
-          placeholder='Write message...'
-          variant="filled"
-          onChange={handleNewMessageChange}
-        />
-          {/* <button onClick={handleSendMessage} className='sendMessageButton'>
-            Send
-          </button> */}
-        <Button
-            variant="contained"
-            color="primary"
-            // classes={{ root: classesBtn.root }}
-            onClick={handleSendMessage}
-          >
-          send
-        </Button>
-      </div>
-      
      </ChatroomCSS>
     );
   };

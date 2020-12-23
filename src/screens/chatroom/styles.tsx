@@ -5,14 +5,16 @@ export const ChatroomCSS = styled.div`
   width: 50%;
 
   .chatroom {
+    width: 23rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
   .chatContainer {
     // position: fixed;
     margin: 1rem;
     height: 35rem;
-    width: 23rem;
+    width: 20rem;
     overflow: scroll;
   }
   .messagesContainer{

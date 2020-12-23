@@ -14,7 +14,7 @@ const Chat = () => {
     // get user id
     const users_id = gettingParams[gettingParams.length-1];
 
-    const { messages, sendMessage } = useChat(roomcode); //creates a websocket and manages messaging
+    const { messages, sendMessage, messagesEndRef } = useChat(roomcode); //creates a websocket and manages messaging
     const [newMessage, setNewMessage] = React.useState(''); //setting the messages to be sent 
   
     const handleNewMessageChange = (event) => {
@@ -26,6 +26,13 @@ const Chat = () => {
       setNewMessage('');
     };
   
+    // const onKeyPress= (e) => {
+    //   if (e.key === 'Enter') {
+    //     sendMessage(newMessage);
+    //     setNewMessage('');
+    //   }
+    // }
+
     return(
       <ChatroomCSS>
         <div className="chatroom">
@@ -60,6 +67,7 @@ const Chat = () => {
                   ))
                 })}
                 </div>
+                <div ref={messagesEndRef} />
               </ol>
             </div>
           </div>
@@ -88,6 +96,7 @@ const Chat = () => {
                 color="primary"
                 // classes={{ root: classesBtn.root }}
                 onClick={handleSendMessage}
+                // onKeyPress={onKeyPress}
               >
               send
             </Button>

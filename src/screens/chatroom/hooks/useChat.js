@@ -16,7 +16,6 @@ const UseChat = (roomcode) => {
     
     const [messages, setMessages] = useState([]); //sent and received messages
     const socketRef = useRef();
- 
 
     useEffect(()=>{
         //creates a WebSocket connection
@@ -29,7 +28,6 @@ const UseChat = (roomcode) => {
         .then(function (response){
             // console.log(response.data[0])
             for (let i = 0; i < response.data.length; i++) {
-                
                 let incomingInfo ={...response.data[i],
                     ownedByCurrentUser:response.data[i].users_id == users_id,
                 }

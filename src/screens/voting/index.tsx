@@ -19,10 +19,10 @@ const Voting = (props) => {
   const roomcode = gettingParams[gettingParams.length-2]
 
   const { votingOption, sendVoteOption } = useVoting(roomcode);
+  console.log(votingOption)
   const [newVoting, setnewVoting] = React.useState("");
 
-  const { addCount, sendCount } = useCount(roomcode);
-  const [count, setCount] = React.useState(1);
+  const { addCount, sendCount } = useVoting(roomcode);
 
   const handlenewVotingChange = (event) => {
     setnewVoting(event.target.value);
@@ -33,10 +33,10 @@ const Voting = (props) => {
     setnewVoting("");
   };
 
-  const handlenewCountChange = (event) => {
+  const handlenewCountChange = (voteOption, event) => {
     event.preventDefault();
-    setCount(count + 1)
-    sendCount(count);
+    console.log(voteOption)
+    sendCount(voteOption);
   }
   
   //this is using material-ui's boxes to seperate stuff out, might be better to just change to divs and edit the styles in the styles.tsx 
@@ -76,28 +76,35 @@ const Voting = (props) => {
       <div className="voteOptionsContainer">
         <ol className="voteOptionsList">
           <div className="voteOptionsPosition">
-            {votingOption.map((voteOption, i) => (
+            {votingOption.map((voteOption, i) => {
+              // console.log(voteOption)
+              return ( 
               <li key={"option" + i} className={`voteOptionItem`}>
                 {voteOption.resto}
                 <Button
-                onClick={handlenewCountChange}
+                disabled={voteOption.userHasVoted ? true: false}
+                onClick={handlenewCountChange.bind(this, voteOption)}
                 >
                   <Check style={{ color: green[500] }} />
                 </Button>
               </li>
-            ))}
+            )
+            })}
           </div>
         </ol>
       </div>
       <div className="votingTable">
         <ol className="voteTableList">
           <div className="voteTablePosition">
-            {votingOption.map((voteOption, t) => (
+            {votingOption.map((votingOption, t) => {
+              // console.log(votingOption)
+              return (
               <li key={"table" + t} className={`voteOptionItem`}>
-                {voteOption.resto}
-                <LinearProgressWithLabel value={voteOption.vote} />
+                {votingOption.resto}
+                <LinearProgressWithLabel value={votingOption.vote.userID.length} />
               </li>
-            ))}
+            )
+            } )}
           </div>
         </ol>
       </div>

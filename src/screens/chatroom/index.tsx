@@ -9,10 +9,13 @@ import Button from "@material-ui/core/Button";
 
 const Chat = () => {
   
-    const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
-    const roomcode = gettingParams[gettingParams.length-2]
-    // get user id
-    const users_id = gettingParams[gettingParams.length-1];
+    // const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+    // const roomcode = gettingParams[gettingParams.length-2];
+    // // get user id
+    // const users_id = gettingParams[gettingParams.length-1];
+
+    const roomcode = localStorage.getItem("roomcode");
+    const users_id = localStorage.getItem("userId");
 
     const { messages, sendMessage, messagesEndRef } = useChat(roomcode); //creates a websocket and manages messaging
     const [newMessage, setNewMessage] = React.useState(''); //setting the messages to be sent 

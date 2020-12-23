@@ -17,7 +17,7 @@ const useSendResto = (roomcode, userId) => {
 
         socketRef.current.on(NEW_VOTE_MAP_EVENT, data => {
             // console.log(data);
-            toast.success("Restaurant Successfully Added To Voting🎉");
+            toast.success("Restaurant Added To Voting🎉");
         })
 
         return () => {

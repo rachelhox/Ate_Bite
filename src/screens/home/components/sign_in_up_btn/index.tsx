@@ -174,6 +174,7 @@ const SignInUpBtn = (props: any) => {
             <TextField
               id="outlined-name"
               label="Password"
+              type="password"
               name="password"
               placeholder="Enter password"
               value={inputs.password}

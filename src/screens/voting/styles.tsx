@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const VotingroomCSS = styled.div`
-  height: 100vh;
-  width: 50%;
-
   .votingContainer {
     display: flex;
     flex-direction: row;
@@ -32,13 +29,24 @@ export const VotingroomCSS = styled.div`
   }
   .voteOptionItem {
     display: flex;
-    border: 0.1rem solid;
+    align-items: center;
+    // border: 0.1rem solid;
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    margin: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .voteOptionItem>div {
+    width: 14rem;
   }
   .votingTable {
     height: 25rem;
     width: 30rem;
-    border: 1px solid black;
+    // border: 1px solid black;
     overflow: auto;
+    border: 1px solid rgba(165, 55, 253, 0.7);
+    border-radius: 0.5rem;
+    box-shadow: 20px 20px 20px -20px rgba(165, 55, 253, 1);
   }
   .enableButton {
     color: green;
@@ -55,7 +63,11 @@ export const VotingroomCSS = styled.div`
   .MuiLinearProgress-root{
     height: 1.2rem;
   }
-  h5 {
+  h4, h5 {
     margin-bottom: 0rem;
+  }
+  hr {
+    box-shadow: 0 20px 5px -20px rgba(165, 55, 253);
+    width: 100%;
   }
 `;

@@ -84,8 +84,8 @@ const Voting = (props) => {
                 return (
                   <li key={"option" + i} className={`voteOptionItem`}>
                     <div>
-                      <h5>{voteOption.resto}</h5>
-                      {voteOption.address && <h5>{voteOption.address}</h5>}
+                      <h4>{voteOption.resto}</h4>
+                      {voteOption.address && <div><hr /><h5>{voteOption.address}</h5></div>}
                     </div>
                     <Button
                       disabled={voteOption.userHasVoted ? true : false}

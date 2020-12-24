@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const VotingroomCSS = styled.div`
+  color: white;
   .votingContainer {
     display: flex;
     flex-direction: row;
@@ -36,7 +37,7 @@ export const VotingroomCSS = styled.div`
     margin: 0.2rem;
     background-color: rgba(255, 255, 255, 0.1);
   }
-  .voteOptionItem>div {
+  .voteOptionItem > div {
     width: 14rem;
   }
   .votingTable {
@@ -56,18 +57,34 @@ export const VotingroomCSS = styled.div`
   }
   .MuiLinearProgress-colorPrimary {
     background-color: white;
-}
-  .MuiLinearProgress-barColorPrimary {
-    background-color: red;
   }
-  .MuiLinearProgress-root{
+  .MuiLinearProgress-barColorPrimary {
+    background-color: rgba(125, 25, 255, 1);
+  }
+  .MuiLinearProgress-root {
     height: 1.2rem;
   }
-  h4, h5 {
+  h4,
+  h5 {
     margin-bottom: 0rem;
   }
   hr {
     box-shadow: 0 20px 5px -20px rgba(165, 55, 253);
     width: 100%;
+  }
+  .voteCountItem {
+    margin-bottom: 1rem;
+  }
+  p {
+    color: white;
+  }
+  .MuiInputBase-input {
+    color: white;
+  }
+  .MuiInput-underline:before {
+    border-bottom: 1px solid white;
+  }
+  .MuiButton-root {
+    color: white;
   }
 `;

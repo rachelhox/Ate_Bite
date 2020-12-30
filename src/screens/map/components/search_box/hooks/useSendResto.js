@@ -17,7 +17,7 @@ const useSendResto = (roomcode, userId) => {
 
         socketRef.current.on(NEW_VOTE_MAP_EVENT, data => {
             // console.log(data);
-            toast.success("Restaurant Successfully Added To Voting🎉");
+            toast.success("Restaurant Added To Voting🎉");
         })
 
         return () => {
@@ -29,7 +29,8 @@ const useSendResto = (roomcode, userId) => {
     const emitResto = (selectedCenter) => {
         socketRef.current.emit(NEW_VOTE_MAP_EVENT, {
             resto: selectedCenter.name,
-            rooms_id: roomcode, // ????
+            address: selectedCenter.address,
+            roomcode: roomcode,
             senderId: userId,
         });
         // for adding an event on livefeed

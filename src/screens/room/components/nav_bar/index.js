@@ -10,6 +10,7 @@ import { RoomHome } from "./home_room";
 import { RoomNavCSS } from "./styles";
 // import Chat from "../../../chatroom";
 // import LiveFeed from "../../../livefeed";
+import Voting from "../../../voting";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,13 +67,14 @@ export const NavBar = (props) => {
         <hr/>
         <RoomHome />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel className="homeroom" value={value} index={1}>
         {/* Mika's Map component: */}
         <MyMap />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel className="homeroom" value={value} index={2}>
         {/* Arran's voting component:
         <Voting /> */}
+        <Voting />
       </TabPanel>
       {/* <LiveFeed /> */}
       {/* </div> */}

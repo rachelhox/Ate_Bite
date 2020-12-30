@@ -59,4 +59,7 @@ export const RoomNavCSS = styled.div`
   .MuiAppBar-root {
     margin: auto;
   }
+  .tab {
+    height: 80vh;
+  }
 `;

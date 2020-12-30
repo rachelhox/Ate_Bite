@@ -79,6 +79,7 @@ export const SignUpForm = () => {
           <TextField
             id="outlined-uncontrolled"
             label="Password"
+            type="password"
             name="password"
             placeholder="Enter Password"
             value={inputs.password}

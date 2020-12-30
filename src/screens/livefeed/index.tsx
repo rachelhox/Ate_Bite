@@ -21,7 +21,7 @@ const LiveFeed = (props) => {
                 <li key={i} className={`feedItem ${feed}`}>
                   <span>{feed.body}</span>
                   <span>{feed.time}</span>
-                </li>
+                </li>   
               ))}
             </div>
           </ul>

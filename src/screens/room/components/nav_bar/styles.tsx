@@ -41,19 +41,18 @@ export const RoomNavCSS = styled.div`
     color: rgba(255, 255, 255);
     background-color: transparent;
   }
-
-  #simple-tabpanel-2 {
-    max-height: 50vh;
-    overflow: scroll;
-  }
   .whole {
     display: flex;
     flex-direction: row;
     // width: 100vw;
     margin: auto;
   }
-  .homeroom {
+  .tabSizing {
     width: 100%;
+    height: 90vh;
+  }
+  .mapTabKeepSize{
+    width: 45vw;
     height: 80vh;
   }
   .MuiAppBar-root {

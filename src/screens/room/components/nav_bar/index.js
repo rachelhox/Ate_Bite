@@ -59,21 +59,25 @@ export const NavBar = (props) => {
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      {/* <div className="whole">       */}
+      {/* <div className="whole"> */}
       {/* <Chat /> */}
-      <TabPanel className="homeroom" value={value} index={0}>
+      <TabPanel className="tabSizing" value={value} index={0}>
         {/* Rachel's Home component: */}
         <h3>Member List</h3>
         <hr/>
         <RoomHome />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel className="tabSizing" value={value} index={1}>
+        <div className='mapTabKeepSize'>
         {/* Mika's Map component: */}
         <MyMap />
+        </div>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel className="tabSizing" value={value} index={2}>
         {/* Arran's voting component:
         <Voting /> */}
+        <br/>
+        <br/>
         <Voting />
       </TabPanel>
       {/* <LiveFeed /> */}

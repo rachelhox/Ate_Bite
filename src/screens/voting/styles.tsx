@@ -22,7 +22,7 @@ div * {
     flex-direction: row;
     margin: 1rem;
     height: 40rem;
-    width: 45rem;
+    width: 43.3vw;
   }
   .voteOptionsContainer {
     width: 30rem;

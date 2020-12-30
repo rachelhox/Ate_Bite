@@ -4,7 +4,7 @@ export const RoomHomeCSS = styled.div`
   color: antiquewhite;
   height: 70vh;
   overflow: scroll;
-  width: 100%;
+  width: 45vw;
   //   width: fit
 `;
 

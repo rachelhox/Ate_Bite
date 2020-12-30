@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const VotingroomCSS = styled.div`
   color: white;
+  height: 80vh;
   .votingContainer {
     display: flex;
     flex-direction: row;
     margin: 1rem;
-    height: 40rem;
-    width: 45rem;
+    height: 80vh;
+    width: 43rem;
   }
   .voteOptionsContainer {
     width: 30rem;

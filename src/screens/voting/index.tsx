@@ -39,10 +39,10 @@ const Voting = (props) => {
   };
 
   //this is using material-ui's boxes to seperate stuff out, might be better to just change to divs and edit the styles in the styles.tsx
-  
+
   //the 10 here needs to be changed to the amount of users in the room
-  const revert = value => (value / 100) * 10;
-  const normalise = value => (value - 0) * 100 / (10 - 0);
+  const revert = (value) => (value / 100) * 10;
+  const normalise = (value) => ((value - 0) * 100) / (10 - 0);
 
   function LinearProgressWithLabel(voteCount) {
     return (
@@ -58,7 +58,6 @@ const Voting = (props) => {
       </Box>
     );
   }
- 
 
   return (
     <VotingroomCSS>
@@ -85,7 +84,12 @@ const Voting = (props) => {
                   <li key={"option" + i} className={`voteOptionItem`}>
                     <div>
                       <h4>{voteOption.resto}</h4>
-                      {voteOption.address && <div><hr /><h5>{voteOption.address}</h5></div>}
+                      {voteOption.address && (
+                        <div>
+                          <hr />
+                          <h5>{voteOption.address}</h5>
+                        </div>
+                      )}
                     </div>
                     <Button
                       disabled={voteOption.userHasVoted ? true : false}

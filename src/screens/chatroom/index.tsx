@@ -28,12 +28,13 @@ const Chat = () => {
     setNewMessage("");
   };
 
-  // const onKeyPress= (e) => {
-  //   if (e.key === 'Enter') {
-  //     sendMessage(newMessage);
-  //     setNewMessage('');
-  //   }
-  // }
+  const onKeyPress= (e) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+      // sendMessage(newMessage);
+      // setNewMessage('');
+    }
+  }
 
   return (
     <ChatroomCSS>
@@ -107,13 +108,12 @@ const Chat = () => {
         <div className="chat-bottom">
           <TextField
             id="filled-multiline-static"
-            // label="Multiline"
             multiline
-            rows={4}
             value={newMessage}
             placeholder="Write message..."
             variant="filled"
             onChange={handleNewMessageChange}
+            onKeyUp={onKeyPress}
           />
           {/* <button onClick={handleSendMessage} className='sendMessageButton'>
                 Send

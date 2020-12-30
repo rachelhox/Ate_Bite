@@ -119,4 +119,7 @@ div * {
     width: 16rem;
     margin-right: 0.5rem;
   }
+  .MuiFilledInput-multiline {
+    padding: 12px 12px 10px;
+}
 `;

@@ -49,7 +49,7 @@ export const RoomNavCSS = styled.div`
   }
   .tabSizing {
     width: 100%;
-    height: 90vh;
+    height: 80vh;
   }
   .mapTabKeepSize{
     width: 45vw;

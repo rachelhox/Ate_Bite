@@ -90,7 +90,7 @@ const UseChat = (roomcode) => {
   const sendMessage = (messageBody) => {
     // let addSpaces = messageBody.replaceAll('\n','\s');
     // console.log(addSpaces)
-    // console.log(messageBody)
+    console.log(users_id)
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
       message: messageBody,
       roomcode,

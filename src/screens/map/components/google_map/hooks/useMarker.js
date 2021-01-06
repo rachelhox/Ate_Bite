@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { existingMarkers } from "../../../../../redux/existingMarkersAction";
 
 // for socket
 const MARKER = 'marker';
@@ -11,21 +13,32 @@ const useMarker = (roomcode) => {
     const [markers, setMarkers] = useState([]);
     const [first, setFirst] = useState(false);
     const socketRef = useRef();
-    useEffect(() => {
-        // get markers previously added to the map
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
-            // console.log(data.data);
-            if (data.data.length > 0) {
-                // console.log('true');
-                setFirst(true);
-            }
-            if (first === true) {
-                // console.log('markers set');
-                setMarkers(data.data);
-            }
-        })
+    // useEffect(() => {
+    //     // get markers previously added to the map
+    //     axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
+    //         // console.log(data.data);
+    //         if (data.data.length > 0) {
+    //             // console.log('true');
+    //             setFirst(true);
+    //         }
+    //         if (first === true) {
+    //             // console.log('markers set');
+    //             setMarkers(data.data);
+    //         }
+    //     })
 
-    }, [first])
+    // }, [first])
+
+    const dispatch = useDispatch();
+    const store = useSelector(state => state.existingMarkersStore);
+    const { success, object } = store;
+    useEffect(() => {
+        dispatch(existingMarkers(roomcode));
+        // setMarkers(object);
+        if (success) {
+            setMarkers(object);
+        }
+    }, [object]);
 
     useEffect(() => {
         socketRef.current = socketIOClient(ENDPOINT, {
@@ -36,7 +49,7 @@ const useMarker = (roomcode) => {
         socketRef.current.on(MARKER, data => {
             // console.log(data);
             setMarkers(data);
-            console.log(markers);
+            // console.log(markers);
         })
 
         return () => {
@@ -59,7 +72,7 @@ const useMarker = (roomcode) => {
     }
     
 
-    return { markers, emitMarker };
+    return { markers, emitMarker, object };
 };
 
 export default useMarker;

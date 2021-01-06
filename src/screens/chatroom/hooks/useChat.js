@@ -39,7 +39,7 @@ const UseChat = (roomcode) => {
       //     setMessages((messages)=> [...messages, incomingInfo]);
       //   }
       setMessages([...response.data]);
-      console.log(messages);
+      // console.log(messages);
     });
   }, []);
 

@@ -33,7 +33,7 @@ export const MyMap = () => {
 
 
     // for socket
-    const { markers, emitMarker } = useMarker(roomcode);
+    const { markers, emitMarker, object } = useMarker(roomcode);
     
     // when click on map -> add marker
     const handleClick = (event) => {
@@ -66,6 +66,7 @@ export const MyMap = () => {
 
     return (
         <div>
+            {/* <h1>{object && object.propic}</h1> */}
             <GoogleMap
             mapContainerStyle={mapContainerStyle}
             zoom={15}

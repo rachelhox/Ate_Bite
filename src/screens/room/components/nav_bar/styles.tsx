@@ -36,7 +36,18 @@ export const RoomNavCSS = styled.div`
     justify-content: space-evenly;
     width: 45rem;
   }
-
+  .avatarContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+  .avatarBoxes{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
   .MuiAppBar-colorPrimary {
     color: rgba(255, 255, 255);
     background-color: transparent;

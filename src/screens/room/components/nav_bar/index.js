@@ -12,6 +12,8 @@ import { RoomNavCSS } from "./styles";
 // import LiveFeed from "../../../livefeed";
 import Voting from "../../../voting";
 
+import useTabUsers from './hooks/useTabUsers'
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -39,17 +41,23 @@ function a11yProps(index) {
   };
 }
 export const NavBar = (props) => {
+
+  const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+  const roomcode = gettingParams[gettingParams.length - 2];
+
   const [value, setValue] = React.useState(0);
+  const { tabUsers, sendTabUsers } = useTabUsers(roomcode);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    sendTabUsers(newValue);
   };
 
   return (
     <RoomNavCSS>
-      
       <AppBar position="static">
         <Tabs
+          className="tabsBox"
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
@@ -58,26 +66,33 @@ export const NavBar = (props) => {
           <Tab label="Map" {...a11yProps(1)} />
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
+        <div className="avatarContainer">
+          <div className="avatarBoxes">
+            <h3>home</h3>
+          </div>
+          <div className="avatarBoxes">
+            <h3>map</h3>
+          </div>
+          <div className="avatarBoxes">
+            <h3>voting</h3>
+          </div>
+        </div>
       </AppBar>
       {/* <div className="whole"> */}
       {/* <Chat /> */}
       <TabPanel className="tabSizing" value={value} index={0}>
-        {/* Rachel's Home component: */}
         <h3>Member List</h3>
-        <hr/>
+        <hr />
         <RoomHome />
       </TabPanel>
       <TabPanel className="tabSizing" value={value} index={1}>
-        <div className='mapTabKeepSize'>
-        {/* Mika's Map component: */}
-        <MyMap />
+        <div className="mapTabKeepSize">
+          <MyMap />
         </div>
       </TabPanel>
       <TabPanel className="tabSizing" value={value} index={2}>
-        {/* Arran's voting component:
-        <Voting /> */}
-        <br/>
-        <br/>
+        <br />
+        <br />
         <Voting />
       </TabPanel>
       {/* <LiveFeed /> */}

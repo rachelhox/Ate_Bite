@@ -30,7 +30,7 @@ const useTabUsers = (roomcode) => {
     const sendTabUsers = (data) => {
         console.log(data);
         socketRef.current.emit(NEW_TAB_EVENT, {
-          data,
+          tab:data,
           users_id,
           roomcode
         });

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { existingMarkers } from "../../../../../redux/existingMarkersAction";
+import { existingMarkers } from "../../../../../redux/actions/existingMarkersAction";
 
 // for socket
 const MARKER = 'marker';

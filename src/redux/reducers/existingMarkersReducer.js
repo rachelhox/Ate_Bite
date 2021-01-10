@@ -2,7 +2,7 @@ import {
     EXISTING_MARKERS_REQUEST,
     EXISTING_MARKERS_SUCCESS,
     EXISTING_MARKERS_FAILURE,
-} from "./existingMarkersAction";
+} from "../actions/existingMarkersAction";
 
 const initialState = {};
 

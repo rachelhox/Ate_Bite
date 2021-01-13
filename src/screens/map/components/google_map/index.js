@@ -33,7 +33,7 @@ export const MyMap = () => {
 
 
     // for socket
-    const { markers, emitMarker, object } = useMarker(roomcode);
+    const { markers, emitMarker } = useMarker(roomcode);
     
     // when click on map -> add marker
     const handleClick = (event) => {

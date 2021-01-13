@@ -13,49 +13,66 @@ const useMarker = (roomcode) => {
     const [markers, setMarkers] = useState([]);
     const [first, setFirst] = useState(false);
     const socketRef = useRef();
-    // useEffect(() => {
-    //     // get markers previously added to the map
-    //     axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
-    //         // console.log(data.data);
-    //         if (data.data.length > 0) {
-    //             // console.log('true');
-    //             setFirst(true);
-    //         }
-    //         if (first === true) {
-    //             // console.log('markers set');
-    //             setMarkers(data.data);
-    //         }
-    //     })
-
-    // }, [first])
-
-    const dispatch = useDispatch();
-    const store = useSelector(state => state.existingMarkersStore);
-    const { success, object } = store;
     useEffect(() => {
-        dispatch(existingMarkers(roomcode));
-        // setMarkers(object);
-        if (success) {
-            setMarkers(object);
-        }
-    }, [object]);
-
-    useEffect(() => {
-        socketRef.current = socketIOClient(ENDPOINT, {
-            query: { roomcode },
-            transports: ['websocket']
-        });
-
-        socketRef.current.on(MARKER, data => {
-            // console.log(data);
-            setMarkers(data);
-            // console.log(markers);
+        // get markers previously added to the map
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
+            // console.log(data.data);
+            if (data.data.length > 0) {
+                // console.log('true');
+                setFirst(true);
+            }
+            if (first === true) {
+                // console.log('markers set');
+                setMarkers(data.data);
+            }
         })
 
+    }, [first])
+
+    // redux
+    // const dispatch = useDispatch();
+    // const store = useSelector(state => state.existingMarkersStore);
+    // const { success, object } = store;
+    // useEffect(() => {
+    //     dispatch(existingMarkers(roomcode));
+    //     // setMarkers(object);
+    //     if (success) {
+    //         setMarkers(object);
+    //     }
+    // }, [object]);
+
+    // socket useEffect
+    // useEffect(() => {
+        // socketRef.current = socketIOClient(ENDPOINT, {
+        //     query: { roomcode },
+        //     transports: ['websocket']
+        // });
+
+        // socketRef.current.on(MARKER, data => {
+        //     // console.log(data);
+        //     setMarkers(data);
+        //     // console.log(markers);
+        // })
+
+    //     return () => {
+    //         socketRef.current.disconnect();
+    //     }        
+    // }, [markers])
+
+    socketRef.current = socketIOClient(ENDPOINT, {
+        query: { roomcode },
+        transports: ['websocket']
+    });
+    socketRef.current.on(MARKER, data => {
+        // console.log(data);
+        setMarkers(data);
+        // console.log(markers);
+    })
+    useEffect(() => {
         return () => {
             socketRef.current.disconnect();
-        }        
-    }, [markers])
+        }    
+    }, []);
 
     const emitMarker = (event, userId) => {
         // for adding marker on map
@@ -72,7 +89,7 @@ const useMarker = (roomcode) => {
     }
     
 
-    return { markers, emitMarker, object };
+    return { markers, emitMarker };
 };
 
 export default useMarker;

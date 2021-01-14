@@ -2,7 +2,7 @@
   padding: 1rem 0;
 ">
 <p align="center">
-  <img src="./src/static/icons/fate-bite-logo.png" style="
+  <img src="./src/static/icons/ate-bite-logo.png" style="
     width: 250px
   "/>
 </p>

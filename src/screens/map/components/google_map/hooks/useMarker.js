@@ -28,7 +28,7 @@ const useMarker = (roomcode) => {
     }, [first])
 
     useEffect(() => {
-        socketRef.current = socketIOClient(ENDPOINT, {
+        socketRef.current = socketIOClient(ENDPOINT + '/map', {
             query: { roomcode },
             transports: ['websocket']
         });

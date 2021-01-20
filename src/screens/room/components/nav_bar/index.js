@@ -46,11 +46,12 @@ export const NavBar = (props) => {
   const roomcode = gettingParams[gettingParams.length - 2];
 
   const [value, setValue] = React.useState(0);
-  const { tabUsers, sendTabUsers } = useTabUsers(roomcode);
+  const { tabUsers, sendTabUsers,  } = useTabUsers(roomcode);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
     sendTabUsers(newValue);
+    
   };
 
   return (
@@ -67,15 +68,12 @@ export const NavBar = (props) => {
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
         <div className="avatarContainer">
-          <div className="avatarBoxes">
-            <h3>home</h3>
-          </div>
-          <div className="avatarBoxes">
+            <div className >
+                test
+            </div>
             <h3>map</h3>
-          </div>
-          <div className="avatarBoxes">
             <h3>voting</h3>
-          </div>
+          
         </div>
       </AppBar>
       {/* <div className="whole"> */}

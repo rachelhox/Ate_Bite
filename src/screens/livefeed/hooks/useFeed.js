@@ -3,7 +3,6 @@ import socketIOClient from 'socket.io-client'
 
 const NEW_FEED_MESSAGE_EVENT= 'newFeedMessage'; //name of the event 
 const NEW_FEED_MARKER_EVENT = 'newFeedMarkerEvent';
-const SOCKET_SERVER_URL='http://localhost:4000'
 
 const UseFeed =(roomcode) => {
 
@@ -12,7 +11,7 @@ const UseFeed =(roomcode) => {
 
     useEffect(()=>{
         //creates a WebSocket connection
-      socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
+      socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL + '/feed', {
             query: { roomcode }, 
             transports: ['websocket'],
         });

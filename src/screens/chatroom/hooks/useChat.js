@@ -37,14 +37,14 @@ const UseChat = (roomcode) => {
       //     setMessages((messages)=> [...messages, incomingInfo]);
       //   }
       setMessages([...response.data]);
-      console.log(messages);
+      // console.log(messages);
     });
   }, []);
 
 
   useEffect(() => {
     //creates a WebSocket connection
-    socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL, {
+    socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL + '/chat', {
       query: { roomcode },
       transports: ["websocket"],
     });
@@ -52,7 +52,7 @@ const UseChat = (roomcode) => {
     //listens for incoming messages
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
       // console.log(messages);
-      // console.log(message);
+      console.log(message);
       //trying to get the relative time display working, but it isn't required and isn't working so will skip for now
       //  let relativeTime = moment(message.time, 'DD/MM/YY  h:mma').fromNow()
       //  console.log(relativeTime)
@@ -86,9 +86,6 @@ const UseChat = (roomcode) => {
 
   //sends a message to the server that forwards it to all the users in the same room
   const sendMessage = (messageBody) => {
-    // let addSpaces = messageBody.replaceAll('\n','\s');
-    // console.log(addSpaces)
-    console.log(users_id)
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
       message: messageBody,
       roomcode,

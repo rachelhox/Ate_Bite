@@ -35,7 +35,7 @@ const UseVoting = (roomcode) => {
 
   useEffect(() => {
     //creates a WebSocket connection
-    socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL, {
+    socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL + '/voting', {
       query: { roomcode },
       transports: ["websocket"],
     });

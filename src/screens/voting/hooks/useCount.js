@@ -4,7 +4,6 @@ import socketIOClient from 'socket.io-client';
 
 const NEW_COUNT_EVENT= 'newCountOption';
 const NEW_FEED_MESSAGE_EVENT= 'newFeedCountOption';
-const SERVER_URL='http://localhost:4000' 
 
 // const users_id = window.localStorage.getItem('userId')
 const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
@@ -18,12 +17,12 @@ const UseCount = (roomcode) => {
 
     useEffect(()=>{
         //creates a WebSocket connection
-      socketRef.current = socketIOClient(SERVER_URL, {
+      socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL + '/voting', {
             query: { roomcode }, 
             transports: ['websocket'],
         });
 
-        Axios.post(`${SERVER_URL}/voting/count/existing`, { roomcode })
+        Axios.post(`${process.env.REACT_APP_SERVER_URL}/voting/count/existing`, { roomcode })
         .then(function (response){
             // console.log(response.data)
             for (let i = 0; i < response.data.length; i++) {

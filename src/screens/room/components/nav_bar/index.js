@@ -5,6 +5,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Avatar from '@material-ui/core/Avatar';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
+
 import { MyMap } from "../../../map/components";
 import { RoomHome } from "./home_room";
 import { RoomNavCSS } from "./styles";
@@ -51,7 +54,6 @@ export const NavBar = (props) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     sendTabUsers(newValue);
-    
   };
 
   return (
@@ -68,11 +70,56 @@ export const NavBar = (props) => {
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
         <div className="avatarContainer">
-            <div className >
+          
+          {tabUsers.map((user, i)=> {
+            if (user.tab === 0){
+              return <AvatarGroup max={4}>
+              <Avatar 
+              className = 'avatarBoxes box0' 
+              src= {user.propic}
+              style={{
+                backgroundColor: `${user.piccolour}`,
+                boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
+              }} />
+            </AvatarGroup>
+             }
+            else if (user.tab === 1) {
+              return <AvatarGroup max={4}>
+              <Avatar  
+              className = 'avatarBoxes box1' 
+              src = {user.propic}
+              style={{
+                backgroundColor: `${user.piccolour}`,
+                boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
+              }} />
+              </AvatarGroup>
+             } else if (user.tab === 2){
+              return <AvatarGroup max={4}>
+              <Avatar  
+              className = 'avatarBoxes box2' 
+              src = {user.propic} 
+              style={{
+                backgroundColor: `${user.piccolour}`,
+                boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
+              }} />
+              </AvatarGroup>
+             }
+
+            // if (x) return y
+            // else return z
+
+
+            // return user.tab === 0 ? x : user.tab === 1 ? y : z
+
+
+
+
+            })}
+            {/* <div className >
                 test
             </div>
             <h3>map</h3>
-            <h3>voting</h3>
+            <h3>voting</h3> */}
           
         </div>
       </AppBar>

@@ -39,14 +39,26 @@ export const RoomNavCSS = styled.div`
   .avatarContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    // justify-content: space-evenly;
     align-items: center;
     width: 100%;
+    height: 4rem;
+  }
+  .MuiAvatarGroup-avatar{
+    border:none;
   }
   .avatarBoxes{
-    display:flex;
-    justify-content: space-evenly;
-    align-items: center;
+    min-width: 3rem;
+    height: 3rem;
+  }
+  .box0{
+    justify-content: flex-start;
+  }
+  .box1{
+    justify-content: center;
+  }
+  .box2{
+    justify-content: flex-end;
   }
   .MuiAppBar-colorPrimary {
     color: rgba(255, 255, 255);

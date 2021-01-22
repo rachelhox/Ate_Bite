@@ -17,7 +17,8 @@ const useTabUsers = (roomcode) => {
     useEffect(() => {
       Axios.post(`${process.env.REACT_APP_SERVER_URL}/tab/existing`, { roomcode, users_id, tab: 0})
       .then(function (response) {
-        console.log(response.data)
+        // console.log(response.data)
+        setTabUsers([...response.data])
       });
     }, []);
 
@@ -29,13 +30,17 @@ const useTabUsers = (roomcode) => {
           });
 
           socketRef.current.on(NEW_TAB_EVENT, (data) => {
-            console.log(data);
-            setTabUsers(data);
-            // console.log(tabUsers)
+            // console.log(data);
+             setTabUsers([...data]);
           });
+
+          return () => {
+            socketRef.current.disconnect();
+          };
 
     }, [tabUsers])
 
+//  console.log(tabUsers)
     const sendTabUsers = (data) => {
         // console.log(data);
         socketRef.current.emit(NEW_TAB_EVENT, {

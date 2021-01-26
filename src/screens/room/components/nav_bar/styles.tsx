@@ -36,29 +36,31 @@ export const RoomNavCSS = styled.div`
     justify-content: space-evenly;
     width: 45rem;
   }
+  .avatar{
+    display:flex;
+    justify-content:center;
+    width:100%
+  }
   .avatarContainer{
     display: flex;
     flex-direction: row;
-    // justify-content: space-evenly;
     align-items: center;
-    width: 100%;
+    width: 30rem;
     height: 4rem;
   }
   .MuiAvatarGroup-avatar{
     border:none;
   }
-  .avatarBoxes{
-    min-width: 3rem;
-    height: 3rem;
-  }
   .box0{
-    justify-content: flex-start;
+    min-width:6.5rem;
   }
   .box1{
-    justify-content: center;
+    margin-left: 3.5rem;
+    min-width:6.5rem;
   }
   .box2{
-    justify-content: flex-end;
+    margin-left: 3.5rem;
+    min-width:6.5rem;
   }
   .MuiAppBar-colorPrimary {
     color: rgba(255, 255, 255);

@@ -69,58 +69,63 @@ export const NavBar = (props) => {
           <Tab label="Map" {...a11yProps(1)} />
           <Tab label="Voting" {...a11yProps(2)} />
         </Tabs>
+        <div className= 'avatar'>
         <div className="avatarContainer">
-          
-          {tabUsers.map((user, i)=> {
-            if (user.tab === 0){
-              return <AvatarGroup max={4}>
-              <Avatar 
-              className = 'avatarBoxes box0' 
-              src= {user.propic}
-              style={{
-                backgroundColor: `${user.piccolour}`,
-                boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
-              }} />
+          <div className='box0'>
+            <AvatarGroup max={4}>
+              {tabUsers.map((user, i) => {
+                if (user.tab === 0) {
+                  return (
+                    <Avatar 
+                      className = 'avatarBoxes' 
+                      src= {user.propic}
+                      style={{
+                        backgroundColor: `${user.piccolour}`,
+                        boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
+                      }} 
+                    />
+                  )
+                }
+              })}
             </AvatarGroup>
-             }
-            else if (user.tab === 1) {
-              return <AvatarGroup max={4}>
-              <Avatar  
-              className = 'avatarBoxes box1' 
-              src = {user.propic}
-              style={{
-                backgroundColor: `${user.piccolour}`,
-                boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
-              }} />
-              </AvatarGroup>
-             } else if (user.tab === 2){
-              return <AvatarGroup max={4}>
-              <Avatar  
-              className = 'avatarBoxes box2' 
-              src = {user.propic} 
-              style={{
-                backgroundColor: `${user.piccolour}`,
-                boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
-              }} />
-              </AvatarGroup>
-             }
-
-            // if (x) return y
-            // else return z
-
-
-            // return user.tab === 0 ? x : user.tab === 1 ? y : z
-
-
-
-
-            })}
-            {/* <div className >
-                test
-            </div>
-            <h3>map</h3>
-            <h3>voting</h3> */}
-          
+          </div>
+          <div className='box1'>
+            <AvatarGroup max={4}>
+              {tabUsers.map((user, i) => {
+                if (user.tab === 1) {
+                  return (
+                    <Avatar 
+                      className = 'avatarBoxes' 
+                      src= {user.propic}
+                      style={{
+                        backgroundColor: `${user.piccolour}`,
+                        boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
+                      }} 
+                    />
+                  )
+                }
+              })}
+            </AvatarGroup>
+          </div>
+          <div className='box2'>
+            <AvatarGroup max={4}>
+              {tabUsers.map((user, i) => {
+                if (user.tab === 2) {
+                  return (
+                    <Avatar 
+                      className = 'avatarBoxes' 
+                      src= {user.propic}
+                      style={{
+                        backgroundColor: `${user.piccolour}`,
+                        boxShadow: `20px 20px 20px -20px ${user.piccolour}`,
+                      }} 
+                    />
+                  )
+                }
+              })}
+            </AvatarGroup>
+          </div>
+        </div>
         </div>
       </AppBar>
       {/* <div className="whole"> */}

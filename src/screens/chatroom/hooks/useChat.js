@@ -9,13 +9,13 @@ const NEW_FEED_MESSAGE_EVENT = "newFeedMessage";
 // console.log('original users ID:' + users_id)
 // console.log(typeof(users_id))
 
-// get data from url
-const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
-// get user id
-const users_id = parseInt(gettingParams[gettingParams.length - 1]);
-// const users_id = localStorage.getItem("userId");
-
 const UseChat = (roomcode) => {
+  // get data from url
+  const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+  // get user id
+  const users_id = parseInt(gettingParams[gettingParams.length - 1]);
+  // const users_id = localStorage.getItem("userId");
+  
   const [messages, setMessages] = useState([]); //sent and received messages
   const socketRef = useRef();
 
@@ -26,7 +26,9 @@ const UseChat = (roomcode) => {
   };
 
   useEffect(() => {
-    Axios.post(`${process.env.REACT_APP_SERVER_URL}/chatroom/existing`, { roomcode }).then(function (response) {
+    Axios.post(`${process.env.REACT_APP_SERVER_URL}/chatroom/existing`, {
+      roomcode,
+    }).then(function (response) {
       // console.log(response.data)
       // for (let i = 0; i < response.data.length; i++) {
 
@@ -41,13 +43,15 @@ const UseChat = (roomcode) => {
     });
   }, []);
 
-
   useEffect(() => {
     //creates a WebSocket connection
-    socketRef.current = socketIOClient(process.env.REACT_APP_SERVER_URL + '/chat', {
-      query: { roomcode },
-      transports: ["websocket"],
-    });
+    socketRef.current = socketIOClient(
+      process.env.REACT_APP_SERVER_URL + "/chat",
+      {
+        query: { roomcode },
+        transports: ["websocket"],
+      }
+    );
 
     //listens for incoming messages
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
@@ -95,7 +99,6 @@ const UseChat = (roomcode) => {
       userId: users_id,
       roomcode,
     });
-    
   };
 
   return { messages, sendMessage, messagesEndRef };

@@ -5,7 +5,6 @@ import socketIOClient from "socket.io-client";
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"; //name of the event
 const NEW_FEED_MESSAGE_EVENT = "newFeedMessage";
-const SERVER_URL = "http://localhost:4000";
 
 // const users_id = window.localStorage.getItem('userId')
 // console.log('original users ID:' + users_id)
@@ -28,7 +27,7 @@ const UseChat = (roomcode) => {
   };
 
   useEffect(() => {
-    Axios.post(`${SERVER_URL}/chatroom/existing`, { roomcode }).then(function (response) {
+    Axios.post(`${process.env.REACT_APP_SERVER_URL}/chatroom/existing`, { roomcode }).then(function (response) {
       // console.log(response.data)
       // for (let i = 0; i < response.data.length; i++) {
 

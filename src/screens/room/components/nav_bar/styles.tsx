@@ -78,7 +78,7 @@ export const RoomNavCSS = styled.div`
   }
   .mapTabKeepSize{
     width: 45vw;
-    height: 80vh;
+    height: 75vh;
   }
   .MuiAppBar-root {
     margin: auto;

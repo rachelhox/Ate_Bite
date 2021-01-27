@@ -17,6 +17,7 @@ div * {
   }
 }
   color: white;
+  height: 80vh;
   .votingContainer {
     display: flex;
     flex-direction: row;

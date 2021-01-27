@@ -1,3 +1,12 @@
+<div style="
+  padding: 1rem 0;
+">
+<p align="center">
+  <img src="./src/static/icons/ate-bite-logo.png" style="
+    width: 250px
+  "/>
+</p>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -76,6 +76,7 @@ export const RoomNavCSS = styled.div`
     width: 100%;
     height: 80vh;
     overflow-x: hidden;
+    overflow-y: hidden;
   }
   .mapTabKeepSize{
     width: 45vw;

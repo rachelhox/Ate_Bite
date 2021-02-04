@@ -95,10 +95,11 @@ const UseChat = (roomcode) => {
       roomcode,
       users_id,
     });
-    socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
-      userId: users_id,
-      roomcode,
-    });
+    //I don't think people really need a livefeed msg whenever someone sends a message
+    // socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
+    //   userId: users_id,
+    //   roomcode,
+    // });
   };
 
   return { messages, sendMessage, messagesEndRef };

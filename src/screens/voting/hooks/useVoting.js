@@ -5,6 +5,7 @@ import socketIOClient from "socket.io-client";
 const NEW_VOTE_EVENT = "newVotingOption";
 const NEW_COUNT_EVENT = "newCountOption";
 const NEW_FEED_OPTION_EVENT = "newFeedOptionEvent";
+const NEW_FEED_COUNT_EVENT = "newFeedCountEvent";
 
 const UseVoting = (roomcode) => {
   const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
@@ -13,7 +14,7 @@ const UseVoting = (roomcode) => {
   const [votingOption, setVoteOption] = useState([]);
   // console.log(votingOption)
   const socketRef = useRef();
-
+  const socketFeed = useRef();
   useEffect(() => {
     Axios.post(`${process.env.REACT_APP_SERVER_URL}/voting/existing`, {
       roomcode,
@@ -37,6 +38,13 @@ const UseVoting = (roomcode) => {
     //creates a WebSocket connection
     socketRef.current = socketIOClient(
       process.env.REACT_APP_SERVER_URL + "/voting",
+      {
+        query: { roomcode },
+        transports: ["websocket"],
+      }
+    );
+    socketFeed.current = socketIOClient(
+      process.env.REACT_APP_SERVER_URL + "/feed",
       {
         query: { roomcode },
         transports: ["websocket"],
@@ -84,6 +92,7 @@ const UseVoting = (roomcode) => {
     //destroys socket reference when connection is closed
     return () => {
       socketRef.current.disconnect();
+      socketFeed.current.disconnect();
     };
   }, [votingOption]);
 
@@ -93,7 +102,7 @@ const UseVoting = (roomcode) => {
       roomcode,
     });
     // send to feed when user add a new resto to voting
-    socketRef.current.emit(NEW_FEED_OPTION_EVENT, {
+    socketFeed.current.emit(NEW_FEED_OPTION_EVENT, {
       userId: users_id,
       roomcode: roomcode,
     });
@@ -104,6 +113,10 @@ const UseVoting = (roomcode) => {
     socketRef.current.emit(NEW_COUNT_EVENT, {
       data,
       users_id,
+    });
+    socketFeed.current.emit(NEW_FEED_COUNT_EVENT, {
+      userId: users_id,
+      roomcode: roomcode,
     });
   };
 

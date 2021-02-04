@@ -8,7 +8,7 @@ const LiveFeed = (props) => {
   const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
   const roomcode = gettingParams[gettingParams.length - 2];
 
-  const { feedMessages } = useFeed(roomcode);
+  const { feedMessages, feedEndRef } = useFeed(roomcode);
 
   return (
     <LiveFeedCSS>
@@ -24,6 +24,7 @@ const LiveFeed = (props) => {
                 </li>   
               ))}
             </div>
+            <div ref={feedEndRef} />
           </ul>
         </div>
       </div>

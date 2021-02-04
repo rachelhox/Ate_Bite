@@ -141,8 +141,6 @@ export const NavBar = (props) => {
         </div>
       </TabPanel>
       <TabPanel className="tabSizing" value={value} index={2}>
-        <br />
-        <br />
         <Voting />
       </TabPanel>
       {/* <LiveFeed /> */}

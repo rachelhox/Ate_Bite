@@ -54,7 +54,7 @@ export const SearchBox = () => {
             >
             <input
                 type="text"
-                placeholder="Customized your placeholder"
+                placeholder="Search Restaurants"
                 style={{
                 boxSizing: `border-box`,
                 border: `1px solid transparent`,
@@ -103,6 +103,7 @@ export const SearchBox = () => {
                         <br />
                         <p>{selectedCenter.address}</p>
                         <form>
+                        <br />  
                             <Button
                                 variant="contained"
                                 onClick={() => emitResto(selectedCenter)}

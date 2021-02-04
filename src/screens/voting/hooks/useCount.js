@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
 const NEW_COUNT_EVENT = "newCountOption";
-const NEW_FEED_MESSAGE_EVENT = "newFeedCountOption";
+const NEW_FEED_COUNT_EVENT = "newFeedCountEvent";
 
 const UseCount = (roomcode) => {
   // const users_id = window.localStorage.getItem('userId')
@@ -13,11 +13,19 @@ const UseCount = (roomcode) => {
   const [addCount, setAddCount] = useState([]);
 
   const socketRef = useRef();
+  const socketFeed = useRef();
 
   useEffect(() => {
     //creates a WebSocket connection
     socketRef.current = socketIOClient(
       process.env.REACT_APP_SERVER_URL + "/voting",
+      {
+        query: { roomcode },
+        transports: ["websocket"],
+      }
+    );
+    socketFeed.current = socketIOClient(
+      process.env.REACT_APP_SERVER_URL + "/feed",
       {
         query: { roomcode },
         transports: ["websocket"],
@@ -71,6 +79,7 @@ const UseCount = (roomcode) => {
     //destroys socket reference when connection is closed
     return () => {
       socketRef.current.disconnect();
+      socketFeed.current.disconnect();
     };
   }, []);
 
@@ -79,6 +88,10 @@ const UseCount = (roomcode) => {
     socketRef.current.emit(NEW_COUNT_EVENT, {
       data,
       users_id,
+    });
+    socketFeed.current.emit(NEW_FEED_COUNT_EVENT, {
+      userId: users_id,
+      roomcode: roomcode,
     });
   };
 

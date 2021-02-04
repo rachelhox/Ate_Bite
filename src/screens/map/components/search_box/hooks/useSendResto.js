@@ -9,12 +9,16 @@ const ENDPOINT = process.env.REACT_APP_SERVER_URL;
 
 const useSendResto = (roomcode, userId) => {
     const socketRef = useRef();
+    const socketFeed = useRef();
     useEffect(() => {
-        socketRef.current = socketIOClient(ENDPOINT, {
+        socketRef.current = socketIOClient(ENDPOINT + "/voting", {
                 query: { roomcode },
                 transports: ['websocket']
         });
-
+        socketFeed.current= socketIOClient(ENDPOINT + "/feed", {
+            query: { roomcode },
+            transports: ['websocket']
+    });
         socketRef.current.on(NEW_VOTE_MAP_EVENT, data => {
             // console.log(data);
             toast.success("Restaurant Added To Voting🎉");
@@ -22,11 +26,13 @@ const useSendResto = (roomcode, userId) => {
 
         return () => {
             socketRef.current.disconnect();
+            socketFeed.current.disconnect();
         }
 
     }, [])
 
     const emitResto = (selectedCenter) => {
+        console.log('from here')
         socketRef.current.emit(NEW_VOTE_MAP_EVENT, {
             resto: selectedCenter.name,
             address: selectedCenter.address,
@@ -34,7 +40,7 @@ const useSendResto = (roomcode, userId) => {
             senderId: userId,
         });
         // for adding an event on livefeed
-        socketRef.current.emit(NEW_FEED_MAP_RESTO_EVENT, {
+        socketFeed.current.emit(NEW_FEED_MAP_RESTO_EVENT, {
             userId: userId,
             roomcode: roomcode,
         });

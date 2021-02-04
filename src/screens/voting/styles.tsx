@@ -1,14 +1,29 @@
 import styled from "styled-components";
 
 export const VotingroomCSS = styled.div`
+div * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: none !important;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 0px !important;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+}
   color: white;
   height: 80vh;
   .votingContainer {
     display: flex;
     flex-direction: row;
     margin: 1rem;
-    height: 80vh;
-    width: 43rem;
+    height: 40rem;
+    width: 43.3vw;
   }
   .voteOptionsContainer {
     width: 30rem;

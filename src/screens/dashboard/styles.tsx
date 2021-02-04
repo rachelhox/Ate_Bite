@@ -1,6 +1,21 @@
 import styled from "styled-components";
 
 export const DashboardCSS = styled.div`
+div * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: none !important;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 0px !important;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+}
   height: 100vh;
   display: flex;
   flex-direction: column;

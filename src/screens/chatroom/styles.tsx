@@ -1,6 +1,21 @@
 import styled from "styled-components";
 
 export const ChatroomCSS = styled.div`
+div * {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: none !important;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 0px !important;
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+}
   #myM {
     display: flex;
     flex-direction: row;
@@ -104,4 +119,7 @@ export const ChatroomCSS = styled.div`
     width: 16rem;
     margin-right: 0.5rem;
   }
+  .MuiFilledInput-multiline {
+    padding: 12px 12px 10px;
+}
 `;

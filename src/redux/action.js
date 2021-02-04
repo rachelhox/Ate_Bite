@@ -20,7 +20,7 @@ function loginFailureActionCreator(message) {
 export function loginUserThunk(email, password) {
   return (dispatch) => {
     return axios
-      .post(`http://localhost:4000/signin`, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/signin`, {
         email: email,
         password: password,
       })
@@ -65,7 +65,7 @@ export function loginFacebookThunk(accessToken) {
   return (dispatch) => {
     console.log(accessToken);
     return axios
-      .post(`${process.env.REACT_APP_API_SERVER}/api/login/facebook`, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/login/facebook`, {
         access_token: accessToken,
       })
       .then((response) => {

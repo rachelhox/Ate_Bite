@@ -5,19 +5,17 @@ import socketIOClient from "socket.io-client";
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage"; //name of the event
 const NEW_FEED_MESSAGE_EVENT = "newFeedMessage";
-const SERVER_URL = "http://localhost:4000";
-
 // const users_id = window.localStorage.getItem('userId')
 // console.log('original users ID:' + users_id)
 // console.log(typeof(users_id))
 
-// get data from url
-const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
-// get user id
-// const users_id = gettingParams[gettingParams.length - 1];
-const users_id = localStorage.getItem("userId");
-
 const UseChat = (roomcode) => {
+  // get data from url
+  const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+  // get user id
+  const users_id = parseInt(gettingParams[gettingParams.length - 1]);
+  // const users_id = localStorage.getItem("userId");
+  
   const [messages, setMessages] = useState([]); //sent and received messages
   const socketRef = useRef();
 
@@ -28,7 +26,9 @@ const UseChat = (roomcode) => {
   };
 
   useEffect(() => {
-    Axios.post(`${SERVER_URL}/chatroom/existing`, { roomcode }).then(function (response) {
+    Axios.post(`${process.env.REACT_APP_SERVER_URL}/chatroom/existing`, {
+      roomcode,
+    }).then(function (response) {
       // console.log(response.data)
       // for (let i = 0; i < response.data.length; i++) {
 
@@ -39,22 +39,24 @@ const UseChat = (roomcode) => {
       //     setMessages((messages)=> [...messages, incomingInfo]);
       //   }
       setMessages([...response.data]);
-      console.log(messages);
+      // console.log(messages);
     });
   }, []);
 
-
   useEffect(() => {
     //creates a WebSocket connection
-    socketRef.current = socketIOClient(SERVER_URL, {
-      query: { roomcode },
-      transports: ["websocket"],
-    });
+    socketRef.current = socketIOClient(
+      process.env.REACT_APP_SERVER_URL + "/chat",
+      {
+        query: { roomcode },
+        transports: ["websocket"],
+      }
+    );
 
     //listens for incoming messages
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
       // console.log(messages);
-      // console.log(message);
+      console.log(message);
       //trying to get the relative time display working, but it isn't required and isn't working so will skip for now
       //  let relativeTime = moment(message.time, 'DD/MM/YY  h:mma').fromNow()
       //  console.log(relativeTime)
@@ -88,20 +90,16 @@ const UseChat = (roomcode) => {
 
   //sends a message to the server that forwards it to all the users in the same room
   const sendMessage = (messageBody) => {
-    // let addSpaces = messageBody.replaceAll('\n','\s');
-    // console.log(addSpaces)
-    // console.log(messageBody)
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
       message: messageBody,
       roomcode,
       users_id,
     });
-    socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
-      userId: users_id,
-      roomcode: roomcode,
-    });
-    
-    
+    //I don't think people really need a livefeed msg whenever someone sends a message
+    // socketRef.current.emit(NEW_FEED_MESSAGE_EVENT, {
+    //   userId: users_id,
+    //   roomcode,
+    // });
   };
 
   return { messages, sendMessage, messagesEndRef };

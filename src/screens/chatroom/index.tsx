@@ -8,13 +8,13 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 const Chat = () => {
-  // const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
-  // const roomcode = gettingParams[gettingParams.length-2];
-  // // get user id
-  // const users_id = gettingParams[gettingParams.length-1];
+  const gettingParams = window.location.href.replaceAll("/", " ").split(" ");
+  const roomcode = gettingParams[gettingParams.length-2];
+  // get user id
+  const users_id = gettingParams[gettingParams.length-1];
 
-  const roomcode = localStorage.getItem("roomcode");
-  const users_id = localStorage.getItem("userId");
+  // const roomcode = localStorage.getItem("roomcode");
+  // const users_id = localStorage.getItem("userId");
 
   const { messages, sendMessage, messagesEndRef } = useChat(roomcode); //creates a websocket and manages messaging
   const [newMessage, setNewMessage] = React.useState(""); //setting the messages to be sent
@@ -28,12 +28,12 @@ const Chat = () => {
     setNewMessage("");
   };
 
-  // const onKeyPress= (e) => {
-  //   if (e.key === 'Enter') {
-  //     sendMessage(newMessage);
-  //     setNewMessage('');
-  //   }
-  // }
+  //this allows for shift+enter to make a new line, and just enter to send message
+  const onKeyPress= (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      handleSendMessage();
+    }
+  }
 
   return (
     <ChatroomCSS>
@@ -107,13 +107,12 @@ const Chat = () => {
         <div className="chat-bottom">
           <TextField
             id="filled-multiline-static"
-            // label="Multiline"
             multiline
-            rows={4}
             value={newMessage}
             placeholder="Write message..."
             variant="filled"
             onChange={handleNewMessageChange}
+            onKeyUp={onKeyPress}
           />
           {/* <button onClick={handleSendMessage} className='sendMessageButton'>
                 Send

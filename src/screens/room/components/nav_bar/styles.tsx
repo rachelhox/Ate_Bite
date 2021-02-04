@@ -36,15 +36,35 @@ export const RoomNavCSS = styled.div`
     justify-content: space-evenly;
     width: 45rem;
   }
-
+  .avatar{
+    display:flex;
+    justify-content:center;
+    width:100%
+  }
+  .avatarContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 30rem;
+    height: 4rem;
+  }
+  .MuiAvatarGroup-avatar{
+    border:none;
+  }
+  .box0{
+    min-width:6.5rem;
+  }
+  .box1{
+    margin-left: 3.5rem;
+    min-width:6.5rem;
+  }
+  .box2{
+    margin-left: 3.5rem;
+    min-width:6.5rem;
+  }
   .MuiAppBar-colorPrimary {
     color: rgba(255, 255, 255);
     background-color: transparent;
-  }
-
-  #simple-tabpanel-2 {
-    max-height: 50vh;
-    overflow: scroll;
   }
   .whole {
     display: flex;
@@ -52,9 +72,15 @@ export const RoomNavCSS = styled.div`
     // width: 100vw;
     margin: auto;
   }
-  .homeroom {
+  .tabSizing {
     width: 100%;
     height: 80vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  .mapTabKeepSize{
+    width: 45vw;
+    height: 75vh;
   }
   .MuiAppBar-root {
     margin: auto;

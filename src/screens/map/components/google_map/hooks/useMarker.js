@@ -11,6 +11,8 @@ const useMarker = (roomcode) => {
     const [markers, setMarkers] = useState([]);
     const [first, setFirst] = useState(false);
     const socketRef = useRef();
+    const socketFeed = useRef();
+
     useEffect(() => {
         // get markers previously added to the map
         axios.get(`${process.env.REACT_APP_SERVER_URL}/existingMarkers/${roomcode}`).then((data) => {
@@ -28,10 +30,17 @@ const useMarker = (roomcode) => {
     }, [first])
 
     useEffect(() => {
-        socketRef.current = socketIOClient(ENDPOINT, {
+        socketRef.current = socketIOClient(ENDPOINT + '/map', {
             query: { roomcode },
             transports: ['websocket']
         });
+        socketFeed.current = socketIOClient(
+            process.env.REACT_APP_SERVER_URL + "/feed",
+            {
+              query: { roomcode },
+              transports: ["websocket"],
+            }
+          );
 
         socketRef.current.on(MARKER, data => {
             // console.log(data);
@@ -41,6 +50,7 @@ const useMarker = (roomcode) => {
 
         return () => {
             socketRef.current.disconnect();
+            socketFeed.current.disconnect();
         }        
     }, [markers])
 
@@ -52,7 +62,7 @@ const useMarker = (roomcode) => {
             location: event.latLng
         });
         // for adding an event on livefeed
-        socketRef.current.emit(NEW_FEED_MARKER_EVENT, {
+        socketFeed.current.emit(NEW_FEED_MARKER_EVENT, {
             userId: userId,
             roomcode: roomcode,
         });

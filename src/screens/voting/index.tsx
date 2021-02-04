@@ -1,14 +1,10 @@
 import React from "react";
-// import Head from "next/head";
-// import { NavBar } from "@components";
-// import { VotingCSS } from "./styles";
 import useVoting from "./hooks/useVoting";
 import { VotingroomCSS } from "./styles";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Check from "@material-ui/icons/Check";
-import { green } from "@material-ui/core/colors";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -37,9 +33,7 @@ const Voting = (props) => {
     // console.log(voteOption);
     sendCount(voteOption);
   };
-
-  //this is using material-ui's boxes to seperate stuff out, might be better to just change to divs and edit the styles in the styles.tsx
-
+  
   //the 10 here needs to be changed to the amount of users in the room
   const revert = (value) => (value / 100) * 10;
   const normalise = (value) => ((value - 0) * 100) / (10 - 0);
